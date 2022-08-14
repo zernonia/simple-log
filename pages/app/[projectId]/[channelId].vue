@@ -10,6 +10,7 @@ const { data: events } = useLazyAsyncData(
     const { data } = await client
       .from<Events>("events")
       .select("id, name, description, created_at")
+      .eq("channel_id", params.value.channelId.toString())
       .order("created_at", { ascending: false })
     return data
   },
