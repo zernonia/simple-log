@@ -58,7 +58,7 @@ onMounted(() => {
           <div class="i-uil-star text-xl"></div>
         </NuxtLink>
         <NuxtLink
-          to="/app/profile"
+          to="/app/settings/profile"
           class="rounded-full border-3 w-12 h-12 flex justify-center items-center overflow-hidden"
         >
           <img :src="user.avatar_url" :alt="user.full_name" v-if="user" />
@@ -66,7 +66,17 @@ onMounted(() => {
         </NuxtLink>
       </div>
     </div>
-    <div class="p-4 w-52 flex flex-col flex-shrink-0 border-x">
+
+    <div
+      :class="[name === 'app' ? 'w-0 p-0 border-r' : 'w-52 p-4 border-x ']"
+      class="flex flex-col flex-shrink-0 transition-all ease-in-out duration-500"
+    >
+      <div v-if="name.toString().includes('settings')" class="flex flex-col">
+        <NuxtLink to="/app/settings/profile">Profile </NuxtLink>
+        <NuxtLink to="/app/settings/billing">Billing </NuxtLink>
+        <NuxtLink to="/app/settings/token">Token </NuxtLink>
+      </div>
+
       <div v-if="selectedProject?.channels">
         <h4 class="my-2">Channel</h4>
         <NuxtLink

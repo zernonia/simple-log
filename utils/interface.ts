@@ -42,5 +42,5 @@ export interface Tokens {
   private?: boolean
   created_at?: string
   owner_id?: string
-  projects?: Projects
+  access?: string[]
 }

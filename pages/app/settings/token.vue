@@ -3,7 +3,9 @@ import { Tokens } from "~~/utils/interface"
 
 const client = useSupabaseClient()
 const user = useSupabaseUser()
-
+const inputModel = ref({
+  name: "",
+})
 const { data: tokens, refresh } = useLazyAsyncData(
   "tokens",
   async () => {
@@ -14,10 +16,16 @@ const { data: tokens, refresh } = useLazyAsyncData(
 )
 
 const createToken = async () => {
-  const { data } = await client.from<Tokens>("tokens").insert({
-    name: "test",
-    private: true,
-    owner_id: user.value.id,
+  const data = await $fetch("/api/token/create", {
+    method: "POST",
+    body: {
+      payload: {
+        id: "ccff374e-d2d6-440a-9b69-93d9f8a55967",
+        name: inputModel.value.name,
+        private: true,
+        owner_id: user.value.id,
+      },
+    },
   })
   refresh()
 }
@@ -25,8 +33,9 @@ const createToken = async () => {
 
 <template>
   <div>
-    <div>profile</div>
+    <div>Token page</div>
 
+    <input type="text" v-model="inputModel.name" />
     <button @click="createToken">Create token</button>
 
     <ul>

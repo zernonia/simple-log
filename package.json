@@ -17,5 +17,9 @@
     "@vueuse/core": "^9.1.0",
     "@vueuse/nuxt": "^9.1.0",
     "nuxt": "3.0.0-rc.8"
+  },
+  "dependencies": {
+    "ioredis": "^5.2.2",
+    "redis-json": "^6.0.3"
   }
 }

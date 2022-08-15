@@ -1,6 +1,6 @@
 import { serverSupabaseServiceRole, serverSupabaseUser } from "#supabase/server"
-
-import { Channels, Projects, Events } from "~~/utils/interface"
+import { redis } from "~~/utils/redis"
+import type { Tokens } from "~~/utils/interface"
 
 export default defineEventHandler(async (event) => {
   try {
@@ -10,10 +10,11 @@ export default defineEventHandler(async (event) => {
     }>(event)
 
     const tokenId = headers.authorization.split("Bearer")[1].trim()
-    //todo: should verify tokenId validity and scope first
+    const tokenData = JSON.parse(await redis.get(tokenId)) as Tokens
 
     const client = serverSupabaseServiceRole(event)
     const { data, error } = await client.rpc("log_event", {
+      input_owner_id: tokenData.owner_id,
       input_project: payload.project,
       input_channel: payload.channel,
       input_name: payload.event,
