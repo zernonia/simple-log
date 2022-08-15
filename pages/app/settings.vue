@@ -1,6 +1,4 @@
 <script setup lang="ts">
-const { params } = toRefs(useRoute())
-
 definePageMeta({
   sidePanel: true,
 })

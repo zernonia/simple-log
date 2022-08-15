@@ -14,12 +14,17 @@
     "@unocss/preset-icons": "^0.45.6",
     "@unocss/preset-uno": "^0.45.6",
     "@unocss/reset": "^0.45.6",
+    "@unocss/transformer-directives": "^0.45.6",
     "@vueuse/core": "^9.1.0",
     "@vueuse/nuxt": "^9.1.0",
     "nuxt": "3.0.0-rc.8"
   },
   "dependencies": {
+    "@formkit/nuxt": "^1.0.0-beta.10",
+    "@formkit/themes": "^1.0.0-beta.10",
     "ioredis": "^5.2.2",
-    "redis-json": "^6.0.3"
+    "redis-json": "^6.0.3",
+    "vue-toastification": "^2.0.0-rc.5",
+    "vue3-emoji-picker": "^1.1.3"
   }
 }

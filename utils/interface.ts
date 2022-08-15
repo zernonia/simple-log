@@ -23,15 +23,16 @@ export interface Users {
 }
 
 export interface Events {
-  id: string /* primary key */
+  id?: string /* primary key */
   name: string
   description?: string
   icon?: string
   notify?: boolean
-  project_id: string /* foreign key to projects.id */
-  channel_id: string /* foreign key to channels.id */
-  owner_id: string
+  project_id?: string /* foreign key to projects.id */
+  channel_id?: string /* foreign key to channels.id */
+  owner_id?: string
   created_at?: string
+  integration?: string
   projects?: Projects
   channels?: Channels
 }

@@ -4,7 +4,7 @@ import { Events } from "~~/utils/interface"
 const { params } = toRefs(useRoute())
 
 const client = useSupabaseClient()
-const { data: events } = useLazyAsyncData(
+const { data: events, pending } = useLazyAsyncData(
   `events-${params.value.channelId}`,
   async () => {
     const { data } = await client
@@ -20,6 +20,10 @@ const { data: events } = useLazyAsyncData(
 
 <template>
   <div>
-    <LogCard v-for="event in events" :data="event"></LogCard>
+    <div class="p-4 border-b">header</div>
+    <div class="w-max mx-auto p-4">
+      <Loader v-if="pending" />
+      <LogCard v-else v-for="event in events" :data="event"></LogCard>
+    </div>
   </div>
 </template>

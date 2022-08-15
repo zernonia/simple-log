@@ -1,17 +1,22 @@
 import { defineNuxtConfig } from "nuxt"
+import transformerDirective from "@unocss/transformer-directives"
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  modules: ["@unocss/nuxt", "@nuxtjs/supabase", "@vueuse/nuxt"],
-  css: ["@unocss/reset/tailwind.css"],
+  modules: ["@unocss/nuxt", "@nuxtjs/supabase", "@vueuse/nuxt", "@formkit/nuxt"],
+  css: ["@unocss/reset/tailwind.css", "~~/assets/formkit.css"],
   unocss: {
     // presets
     uno: true, // enabled `@unocss/preset-uno`
-    icons: true, // enabled `@unocss/preset-icons`
+    icons: true, // enabled `@unocss/preset-icons`,
+    transformers: [transformerDirective()], // enabled `@unocss/transformer-directives`,
 
     // core options
     shortcuts: [],
     rules: [],
+  },
+  build: {
+    transpile: ["vue3-emoji-picker"],
   },
   runtimeConfig: {
     REDIS_HOST: process.env.REDIS_HOST,
