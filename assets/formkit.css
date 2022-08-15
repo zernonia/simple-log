@@ -1,26 +1,26 @@
 .formkit-outer {
-  --at-apply: mb-5;
+  @apply mb-5;
 }
 .formkit-label {
-  --at-apply: block mb-2 font-medium text-gray-400;
+  @apply block mb-2 font-medium text-gray-400;
 }
 .formkit-inner {
-  --at-apply: max-w-md;
+  @apply max-w-md;
 }
 .formkit-input {
-  --at-apply: border rounded-lg  w-full py-2 px-3  text-gray-800 placeholder-gray-400 outline-none transition ring-3 ring-transparent focus:ring-gray-300 disabled:opacity-50;
+  @apply border rounded-lg  w-full py-2 px-3  text-gray-800 placeholder-gray-400 outline-none transition ring-3 ring-transparent focus:ring-gray-300 disabled:opacity-50;
 }
 .formkit-input[type="submit"] {
-  --at-apply: bg-gray-900 text-white max-w-md relative inline-flex justify-center items-center;
+  @apply bg-gray-900 text-white max-w-md relative inline-flex justify-center items-center;
 }
 .formkit-help {
-  --at-apply: text-xs text-gray-500;
+  @apply text-xs text-gray-500;
 }
 .formkit-messages {
-  --at-apply: list-none p-0 mt-1 mb-0;
+  @apply list-none p-0 mt-1 mb-0;
 }
 .formkit-message {
-  --at-apply: text-red-500 mb-1 text-xs;
+  @apply text-red-500 mb-1 text-xs;
 }
 
 [data-loading] [data-type="submit"] .formkit-input::before {

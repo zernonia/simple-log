@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     // presets
     uno: true, // enabled `@unocss/preset-uno`
     icons: true, // enabled `@unocss/preset-icons`,
-    transformers: [transformerDirective()], // enabled `@unocss/transformer-directives`,
+    transformers: [transformerDirective({ enforce: "pre" })], // enabled `@unocss/transformer-directives`,
 
     // core options
     shortcuts: [],

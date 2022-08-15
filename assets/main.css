@@ -1,14 +1,14 @@
 .circle-panel {
-  --at-apply: rounded-full border-3 border-transparent w-12 h-12 flex justify-center items-center hover:text-gray-400 transition duration-500;
+  @apply rounded-full border-3 border-transparent w-12 h-12 flex justify-center items-center hover:text-gray-400 transition duration-500;
 }
 .router-link-exact-active.circle-panel,
 .circle-panel-active {
-  --at-apply: border-gray-200 !text-gray-400;
+  @apply border-gray-200 !text-gray-400;
 }
 
 .panel {
-  --at-apply: flex items-center px-3 py-1.5 font-medium rounded-lg bg-transparent hover:text-gray-400 transition duration-500;
+  @apply flex items-center px-3 py-1.5 font-medium rounded-lg bg-transparent hover:text-gray-400 transition duration-500;
 }
 .router-link-active.panel {
-  --at-apply: bg-gray-100 !text-gray-400;
+  @apply bg-gray-100 !text-gray-400;
 }
