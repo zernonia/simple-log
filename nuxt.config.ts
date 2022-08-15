@@ -15,8 +15,10 @@ export default defineNuxtConfig({
     shortcuts: [],
     rules: [],
   },
-  build: {
-    transpile: ["vue3-emoji-picker"],
+  nitro: {
+    externals: {
+      inline: ["@nuxtjs/supabase", "websocket"],
+    },
   },
   runtimeConfig: {
     REDIS_HOST: process.env.REDIS_HOST,
