@@ -395,6 +395,13 @@
     "@formkit/utils" "1.0.0-beta.10"
     "@formkit/validation" "1.0.0-beta.10"
 
+"@iconify-json/logos@^1.1.14":
+  version "1.1.14"
+  resolved "https://registry.yarnpkg.com/@iconify-json/logos/-/logos-1.1.14.tgz#ae480db38d1732ce1c68ac2250177415336965b9"
+  integrity sha512-SvSxKubQbP/7Wdb3loShUeRGv82ejkNo5gjzvJzQeauntuU4aZjDrx0mnkhFZgNYd3li/mxvzPn79Xc5SGVliw==
+  dependencies:
+    "@iconify/types" "*"
+
 "@iconify-json/ph@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@iconify-json/ph/-/ph-1.1.2.tgz#8827e1ef5ce814941faa992453a955103788cb54"

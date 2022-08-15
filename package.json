@@ -7,6 +7,7 @@
     "preview": "nuxt preview"
   },
   "devDependencies": {
+    "@iconify-json/logos": "^1.1.14",
     "@iconify-json/ph": "^1.1.2",
     "@iconify-json/uil": "^1.1.2",
     "@nuxtjs/supabase": "^0.1.19",

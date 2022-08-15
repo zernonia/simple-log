@@ -66,7 +66,11 @@ onUnmounted(() => {
         <NuxtLink to="/app/setup" class="circle-panel">
           <div class="i-uil-star text-xl"></div>
         </NuxtLink>
-        <NuxtLink to="/app/settings/plugin" class="circle-panel">
+        <NuxtLink
+          to="/app/settings/plugins"
+          class="circle-panel"
+          :class="{ 'circle-panel-active': name.toString().includes('app-settings') }"
+        >
           <div class="i-uil-cog text-xl"></div>
         </NuxtLink>
         <NuxtLink to="/app/settings/profile" class="circle-panel overflow-hidden">
@@ -86,7 +90,7 @@ onUnmounted(() => {
         <NuxtLink class="panel" to="/app/settings/profile">Profile </NuxtLink>
         <NuxtLink class="panel" to="/app/settings/billing">Billing </NuxtLink>
         <NuxtLink class="panel" to="/app/settings/token">Token </NuxtLink>
-        <NuxtLink class="panel" to="/app/settings/plugin">Plugin </NuxtLink>
+        <NuxtLink class="panel" to="/app/settings/plugins">Plugins</NuxtLink>
       </div>
 
       <div v-if="selectedProject?.channels">
