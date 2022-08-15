@@ -1,0 +1,14 @@
+.circle-panel {
+  @apply rounded-full border-3 border-transparent w-12 h-12 flex justify-center items-center hover:text-gray-400 transition duration-500;
+}
+.router-link-exact-active.circle-panel,
+.circle-panel-active {
+  @apply border-gray-200 !text-gray-400;
+}
+
+.panel {
+  @apply flex items-center px-3 py-1.5 font-medium rounded-lg bg-transparent hover:text-gray-400 transition duration-500;
+}
+.router-link-active.panel {
+  @apply bg-gray-100 !text-gray-400;
+}

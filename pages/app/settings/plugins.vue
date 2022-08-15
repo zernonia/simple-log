@@ -32,9 +32,9 @@ const createToken = async (plugin: string) => {
 
 const { copy } = useClipboard()
 
-const computeUrl = (type: string) => {
-  if (type === "supabase") {
-    return window.location.host + "/api/v1/supabase"
+const computeUrl = (integration: Integrations) => {
+  if (integration.name === "supabase") {
+    return window.location.host + "/api/v1/supabase/" + integration.id
   }
 }
 </script>
@@ -55,16 +55,11 @@ const computeUrl = (type: string) => {
           <div class="w-full rounded-xl border-3 p-3 text-sm flex items-center justify-between">
             <div class="flex w-full">
               <div class="i-logos-supabase-icon flex-shrink-0 text-3xl mr-4"></div>
-              <input
-                type="text"
-                :value="computeUrl(integration.name)"
-                class="w-full disabled:bg-transparent"
-                disabled
-              />
+              <input type="text" :value="computeUrl(integration)" class="w-full disabled:bg-transparent" disabled />
             </div>
 
             <div class="flex-shrink-0">
-              <button @click="copy(integration.id)"><div class="i-uil-clipboard text-lg mr-2"></div></button>
+              <button @click="copy(computeUrl(integration))"><div class="i-uil-clipboard text-lg mr-2"></div></button>
               <!-- <button><div class="i-uil-cog text-lg"></div></button> -->
             </div>
           </div>

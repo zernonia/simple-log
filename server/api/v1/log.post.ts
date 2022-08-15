@@ -21,6 +21,7 @@ export default defineEventHandler(async (event) => {
       input_description: payload.description,
       input_icon: payload.icon,
       input_notify: payload.notify,
+      input_integration: null,
     })
 
     return { data, error }
