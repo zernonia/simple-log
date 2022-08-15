@@ -50,8 +50,7 @@ export interface Tokens {
 export interface Integrations {
   id: string /* primary key */
   name?: string
-  project_id?: string /* foreign key to projects.id */
+  project_name?: string
   channel_name?: string
   owner_id?: string
-  projects?: Projects
 }

@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
     const { data, error } = await client.from<Integrations>("integrations").upsert(payload).single()
     if (error) throw error
     const redisResponse = await redis.set(`integrations-${data.id}`, JSON.stringify(payload))
-    const redisGet = await redis.get(data.id)
+    const redisGet = await redis.get(`integrations-${data.id}`)
 
     return {
       payload,

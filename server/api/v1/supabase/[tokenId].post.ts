@@ -1,4 +1,4 @@
-import { serverSupabaseServiceRole, serverSupabaseUser } from "#supabase/server"
+import { serverSupabaseServiceRole } from "#supabase/server"
 import { redis } from "~~/utils/redis"
 import type { Integrations } from "~~/utils/interface"
 import type { SupabasePayload } from "~~/utils/types/supabase"
@@ -6,11 +6,7 @@ import type { SupabasePayload } from "~~/utils/types/supabase"
 export default defineEventHandler(async (event) => {
   try {
     const { tokenId } = getRouterParams(event)
-    const { payload } = await useBody<{
-      payload: SupabasePayload
-    }>(event)
-
-    // const tokenId = headers.authorization.split("Bearer")[1].trim()
+    const payload = await useBody<SupabasePayload>(event)
     const tokenData = JSON.parse(await redis.get(`integrations-${tokenId}`)) as Integrations
 
     const mapType = (type: SupabasePayload["type"]) => {
@@ -30,7 +26,7 @@ export default defineEventHandler(async (event) => {
     const client = serverSupabaseServiceRole(event)
     const { data, error } = await client.rpc("log_event", {
       input_owner_id: tokenData.owner_id,
-      input_project: tokenData.project_id,
+      input_project: tokenData.project_name,
       input_channel: tokenData.channel_name,
       input_name: `${mapType(payload.type).name} record on ${payload.table}`,
       input_description: JSON.stringify({ new: payload.record, old: payload.old_record }),

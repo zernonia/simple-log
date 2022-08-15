@@ -20,9 +20,10 @@ const createToken = async (plugin: string) => {
     method: "POST",
     body: {
       payload: {
+        id: "2ab170cd-bfe8-494b-bcdf-7788ac663850",
         name: plugin,
         owner_id: user.value.id,
-        project_id: "c46d7c62-541f-4d3c-a3fc-872af78764d9",
+        project_name: "simple-log",
         channel_name: "test",
       },
     },
@@ -34,7 +35,7 @@ const { copy } = useClipboard()
 
 const computeUrl = (integration: Integrations) => {
   if (integration.name === "supabase") {
-    return window.location.host + "/api/v1/supabase/" + integration.id
+    return window.location.origin + "/api/v1/supabase/" + integration.id
   }
 }
 </script>

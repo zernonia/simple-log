@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
     const { data } = await client.from<Tokens>("tokens").upsert(payload).single()
 
     const redisResponse = await redis.set(`token-${data.id}`, JSON.stringify(payload))
-    const redisGet = await redis.get(data.id)
+    const redisGet = await redis.get(`token-${data.id}`)
 
     return {
       payload,
