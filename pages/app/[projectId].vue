@@ -7,7 +7,7 @@ definePageMeta({
 </script>
 
 <template>
-  <div>
+  <div class="w-full h-full">
     <NuxtPage></NuxtPage>
   </div>
 </template>

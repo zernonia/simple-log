@@ -4,7 +4,7 @@ import type { Users, Projects } from "~~/utils/interface"
 
 const { params, name, meta } = toRefs(useRoute())
 const client = useSupabaseClient()
-const { projects } = useProjects()
+const { projects, selectedProject } = useProjects()
 
 const { data: user } = useLazyAsyncData(
   "user",
@@ -25,8 +25,6 @@ useLazyAsyncData(
   { server: false }
 )
 
-const selectedProject = computed(() => projects.value?.find((i) => i.id === params.value.projectId))
-
 let subscribeEvent: RealtimeSubscription
 onMounted(() => {
   subscribeEvent = client
@@ -44,14 +42,14 @@ onUnmounted(() => {
 
 <template>
   <div class="h-screen w-screen overflow-hidden flex">
-    <div class="p-4 w-20 flex flex-col justify-between flex-shrink-0">
+    <div class="p-3 w-18 flex flex-col justify-between flex-shrink-0">
       <div class="flex flex-col space-y-2">
         <NuxtLink to="/app/" class="circle-panel">
           <div class="i-uil-box text-xl"></div>
         </NuxtLink>
         <NuxtLink
           v-for="project in projects"
-          :to="`/app/${project.id}`"
+          :to="`/app/${project.id}/${project.channels?.[0].id}`"
           class="circle-panel"
           :class="{ 'circle-panel-active': name.toString().includes('app-projectId') }"
         >
@@ -88,13 +86,13 @@ onUnmounted(() => {
         <h4 class="my-3 uppercase text-sm font-bold text-gray-400">Settings</h4>
 
         <NuxtLink class="panel" to="/app/settings/profile">Profile </NuxtLink>
-        <NuxtLink class="panel" to="/app/settings/billing">Billing </NuxtLink>
+        <!-- <NuxtLink class="panel" to="/app/settings/billing">Billing </NuxtLink> -->
         <NuxtLink class="panel" to="/app/settings/token">Token </NuxtLink>
         <NuxtLink class="panel" to="/app/settings/plugins">Plugins</NuxtLink>
       </div>
 
       <div v-if="selectedProject?.channels">
-        <h2 class="text-xl font-bold pb-3">{{ selectedProject.name }}</h2>
+        <h2 class="text-xl font-semibold pb-3">{{ selectedProject.name }}</h2>
         <div class="my-3 flex justify-between">
           <h4 class="uppercase text-sm font-bold text-gray-400">Channel</h4>
           <button><div class="i-uil-plus"></div></button>

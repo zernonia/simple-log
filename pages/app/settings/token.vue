@@ -37,22 +37,23 @@ const { copy } = useClipboard()
   <div class="flex flex-col p-4">
     <h1 class="text-2xl font-bold pb-4">Token</h1>
 
-    <div></div>
-    <input type="text" v-model="inputModel.name" />
-    <button @click="createToken">Create token</button>
+    <div class="max-w-120 w-full mx-auto">
+      <input type="text" v-model="inputModel.name" />
+      <button @click="createToken">Create token</button>
 
-    <ul>
-      <li v-for="token in tokens" class="">
-        <h3>{{ token.name }}</h3>
-        <div class="w-full rounded-lg border-3 p-3 text-sm flex items-center justify-between">
-          <input type="text" :value="token.id" class="w-full max-w-82 blur-sm hover:blur-0 transition" disabled />
+      <ul class="w-full">
+        <li v-for="token in tokens" class="">
+          <h3>{{ token.name }}</h3>
+          <div class="w-full rounded-lg border-3 p-3 text-sm flex items-center justify-between">
+            <input type="text" :value="token.id" class="w-full max-w-82 blur-sm hover:blur-0 transition" disabled />
 
-          <div class="flex-shrink-0">
-            <button @click="copy(token.id)"><div class="i-uil-clipboard text-lg mr-2"></div></button>
-            <!-- <button><div class="i-uil-cog text-lg"></div></button> -->
+            <div class="flex-shrink-0">
+              <button @click="copy(token.id)"><div class="i-uil-clipboard text-lg mr-2"></div></button>
+              <!-- <button><div class="i-uil-cog text-lg"></div></button> -->
+            </div>
           </div>
-        </div>
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>

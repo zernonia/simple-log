@@ -32,7 +32,7 @@ export interface Events {
   channel_id?: string /* foreign key to channels.id */
   owner_id?: string
   created_at?: string
-  plugin?: string
+  integration?: string
   projects?: Projects
   channels?: Channels
 }
@@ -43,7 +43,6 @@ export interface Tokens {
   private?: boolean
   created_at?: string
   owner_id?: string
-  plugin?: string
   access?: string[]
 }
 

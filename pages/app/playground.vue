@@ -35,8 +35,8 @@ const submit = async () => {
   <div class="flex flex-col p-4 mx-auto">
     <h1 class="text-2xl font-bold pb-4">Playground</h1>
 
-    <div class="flex">
-      <div class="w-full mr-8">
+    <div class="flex flex-col lg:flex-row max-w-screen-lg mx-auto">
+      <div class="w-full min-w-80 mr-8">
         <FormKit type="form" @submit="submit" v-model="payload">
           <FormKit
             required
@@ -71,7 +71,7 @@ const submit = async () => {
         </FormKit>
       </div>
 
-      <div class="bg-gray-50 rounded-xl flex items-center justify-center px-16 py-8">
+      <div class="flex-shrink-0 bg-gray-50 rounded-xl flex items-center justify-center px-16 py-8">
         <div class="rounded-lg bg-white shadow-xl shadow-gray-200">
           <LogCard :data="mappedPayload"></LogCard>
         </div>
