@@ -4,14 +4,15 @@
 .formkit-label {
   @apply block mb-2 font-medium text-gray-400;
 }
-.formkit-inner {
-  @apply max-w-md;
+.formkit-inner,
+.formkit-input[type="submit"] {
+  @apply flex items-center min-h-11 border rounded-lg  w-full py-2 px-3  text-gray-800 placeholder-gray-400 outline-none transition ring-3 ring-transparent focus-within:ring-gray-300;
 }
 .formkit-input {
-  @apply min-h-11 border rounded-lg  w-full py-2 px-3  text-gray-800 placeholder-gray-400 outline-none transition ring-3 ring-transparent focus:ring-gray-300 disabled:opacity-50;
+  @apply w-full  placeholder-gray-400 outline-none  disabled:opacity-50;
 }
 .formkit-input[type="submit"] {
-  @apply bg-gray-900 text-white max-w-md relative inline-flex justify-center items-center;
+  @apply bg-gray-900 text-white font-medium max-w-md relative inline-flex justify-center items-center;
 }
 .formkit-help {
   @apply text-xs text-gray-500;

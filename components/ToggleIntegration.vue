@@ -3,7 +3,7 @@ import { PropType } from "vue"
 import { Integrations } from "~~/utils/interface"
 
 const props = defineProps({
-  integration: { type: Object as PropType<Integrations> },
+  integration: Object as PropType<Integrations>,
   isNew: { type: Boolean, default: false },
 })
 const emits = defineEmits(["save", "cancel", "delete"])
@@ -29,6 +29,12 @@ watch(
   },
   { immediate: true }
 )
+
+const isConfirmDeleting = ref(false)
+const confirmDelete = () => {
+  emits("delete")
+  isConfirmDeleting.value = false
+}
 </script>
 
 <template>
@@ -66,17 +72,30 @@ watch(
         <FormKit type="submit" name="Save" @click="emits('save')" />
       </div>
 
-      <button v-if="isNew" class="btn-danger text-xs mx-1" @click="emits('cancel')">Cancel</button>
+      <button v-if="isNew" class="btn-danger text-sm mx-1" @click="emits('cancel')">Cancel</button>
       <div v-else class="mt-1 mx-1 flex justify-between items-center">
-        <button class="btn-secondary text-xs" @click="copy(computeUrl(integration))">
+        <button class="btn-secondary text-sm" @click="copy(computeUrl(integration))">
           <div class="i-uil-clipboard text-base mr-2"></div>
           {{ copied ? "Copied" : "Copy endpoint" }}
         </button>
 
-        <button class="text-xs inline-flex text-red-500 hover:underline underline-offset-2" @click="emits('delete')">
+        <button
+          class="text-sm inline-flex text-red-500 hover:underline underline-offset-2"
+          @click="isConfirmDeleting = true"
+        >
           Delete Plugin
         </button>
       </div>
     </div>
+
+    <Modal v-model:open="isConfirmDeleting">
+      <template #header>Delete</template>
+      <p class="text-gray-800 mb-6">Are you sure you want to delete the plugin? This action cannot be undone.</p>
+
+      <template #footer="{ cancel }">
+        <button class="btn-secondary bg-gray-50" @click="cancel">Cancel</button>
+        <button class="btn-danger" @click="confirmDelete">Delete</button>
+      </template>
+    </Modal>
   </Toggle>
 </template>

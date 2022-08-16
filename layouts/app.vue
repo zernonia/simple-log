@@ -2,7 +2,7 @@
 import { RealtimeSubscription } from "@supabase/realtime-js"
 import type { Users, Projects } from "~~/utils/interface"
 
-const { params, name, meta } = toRefs(useRoute())
+const { name, meta } = toRefs(useRoute())
 const client = useSupabaseClient()
 const user = useUser()
 const { projects, selectedProject } = useProjects()
@@ -93,21 +93,7 @@ onUnmounted(() => {
         <NuxtLink class="panel" to="/app/settings/plugins">Plugins</NuxtLink>
       </div>
 
-      <div v-if="selectedProject?.channels">
-        <h2 class="text-xl font-semibold pb-3">{{ selectedProject.name }}</h2>
-        <div class="my-3 flex justify-between">
-          <h4 class="uppercase text-sm font-bold text-gray-400">Channel</h4>
-          <button><div class="i-uil-plus"></div></button>
-        </div>
-        <NuxtLink
-          v-for="channel in selectedProject.channels"
-          :to="`/app/${params.projectId}/${channel.id}`"
-          class="panel"
-        >
-          <div class="i-ph-hash-bold mr-2"></div>
-          {{ channel.name }}
-        </NuxtLink>
-      </div>
+      <SidepanelChannel v-if="selectedProject?.channels"></SidepanelChannel>
     </div>
     <div class="w-full flex-grow overflow-y-auto">
       <slot></slot>

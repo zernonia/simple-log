@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     // core options
     shortcuts: [
       {
+        btn: "font-medium rounded-lg py-2 px-3  text-gray-800  outline-none transition ring-3 ring-transparent focus:ring-gray-300 disabled:opacity-50 bg-gray-900 text-white relative inline-flex justify-center items-center",
         "btn-secondary":
           "font-medium inline-flex px-3 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition ease-in-out ring-transparent focus:ring-3 focus:ring-gray-300",
         "btn-danger":
