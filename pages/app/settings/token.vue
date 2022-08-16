@@ -63,7 +63,7 @@ const { copy } = useClipboard()
       <button class="btn" :disabled="isCreatingNewToken" @click="isCreatingNewToken = true">Create token</button>
 
       <h3 class="mt-6 font-semibold text-lg">My Tokens</h3>
-      <p class="text-sm text-gray-400">Tokens are required for publishing your events to LogSnag</p>
+      <p class="text-sm text-gray-400">Tokens are required for publishing your events to SimpleLog</p>
 
       <ul class="w-full mt-6">
         <Toggle class="mb-4" v-for="token in tokens">

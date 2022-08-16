@@ -26,7 +26,8 @@ onMounted(() => {
     </button>
 
     <div
-      class="border-t border-gray-100 transition-all duration-500 ease-in-out overflow-hidden"
+      class="border-gray-100 transition-all duration-500 ease-in-out overflow-hidden"
+      :class="{ 'border-t': isToggleOpen }"
       :style="[isToggleOpen ? `max-height: ${height}px` : 'max-height: 0px']"
     >
       <div ref="el" class="py-3">

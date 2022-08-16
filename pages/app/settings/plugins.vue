@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { Integrations, Tokens } from "~~/utils/interface"
+import { Integrations } from "~~/utils/interface"
 
 const client = useSupabaseClient()
 const user = useSupabaseUser()
-const inputModel = ref({
-  name: "",
-})
-const { data: integrations, refresh } = useLazyAsyncData(
+
+const {
+  data: integrations,
+  pending,
+  refresh,
+} = useLazyAsyncData(
   "integrations",
   async () => {
     const { data } = await client.from<Integrations>("integrations").select("*")
@@ -15,27 +17,37 @@ const { data: integrations, refresh } = useLazyAsyncData(
   { server: false }
 )
 
-const createToken = async (plugin: string) => {
+const createToken = async (integration: Integrations) => {
   const data = await $fetch("/api/integration/create", {
     method: "POST",
     body: {
       payload: {
-        id: "2ab170cd-bfe8-494b-bcdf-7788ac663850",
-        name: plugin,
         owner_id: user.value.id,
-        project_name: "simple-log",
-        channel_name: "test",
+        ...integration,
       },
     },
   })
   refresh()
 }
 
-const { copy } = useClipboard()
-
-const computeUrl = (integration: Integrations) => {
-  if (integration.name === "supabase") {
-    return window.location.origin + "/api/v1/supabase/" + integration.id
+const { projects } = useProjects()
+const isCreatingNewIntegration = ref(false)
+const newIntegration = ref<Integrations>({
+  name: "",
+})
+const resetCreateNewToken = () => {
+  isCreatingNewIntegration.value = false
+  newIntegration.value = {
+    name: "",
+  }
+}
+const createIntegration = (type: "supabase") => {
+  isCreatingNewIntegration.value = true
+  newIntegration.value = {
+    name: type,
+    owner_id: user.value.id,
+    project_name: projects.value?.[0]?.name,
+    channel_name: "",
   }
 }
 </script>
@@ -45,26 +57,44 @@ const computeUrl = (integration: Integrations) => {
     <template #header>Plugins</template>
 
     <div class="max-w-120 mt-6 w-full mx-auto">
-      <button class="w-full border-3 rounded-xl p-3 flex items-center" @click="createToken('supabase')">
-        <div class="i-logos-supabase-icon text-3xl mr-4"></div>
-        <p class="font-medium">Supabase</p>
-      </button>
+      <div class="flex space-x-4">
+        <button
+          class="w-32 h-32 border-3 border-gray-100 hover:border-gray-800 transition rounded-xl p-3 flex flex-col justify-center items-center"
+          @click="createIntegration('supabase')"
+        >
+          <div class="i-logos-supabase-icon text-5xl mb-4"></div>
+          <p class="font-medium">Supabase</p>
+        </button>
 
-      <ul class="mt-8">
-        <li v-for="integration in integrations" class="">
-          <h3>{{ integration.name }}</h3>
-          <div class="w-full rounded-xl border-3 p-3 text-sm flex items-center justify-between">
-            <div class="flex w-full">
-              <div class="i-logos-supabase-icon flex-shrink-0 text-3xl mr-4"></div>
-              <input type="text" :value="computeUrl(integration)" class="w-full disabled:bg-transparent" disabled />
-            </div>
+        <NuxtLink
+          class="w-32 h-32 text-center text-gray-300 border-3 border-gray-100 hover:border-gray-800 hover:text-gray-800 transition rounded-xl p-3 flex flex-col justify-center items-center"
+          to="https://github.com/zernonia/simple-log/issues"
+          target="_blank"
+        >
+          <div class="i-uil-plus text-5xl"></div>
+          <p class="text-sm">Suggest new integrations</p>
+        </NuxtLink>
+      </div>
 
-            <div class="flex-shrink-0">
-              <button @click="copy(computeUrl(integration))"><div class="i-uil-clipboard text-lg mr-2"></div></button>
-              <!-- <button><div class="i-uil-cog text-lg"></div></button> -->
-            </div>
-          </div>
-        </li>
+      <h3 class="mt-6 font-semibold text-lg">My Integrations</h3>
+      <p class="text-sm text-gray-400">Tokens are required for publishing your events to SimpleLog</p>
+
+      <Loader v-if="pending && !integrations"></Loader>
+      <ul class="mt-8" v-else>
+        <ToggleIntegration
+          v-for="integration in integrations"
+          :integration="integration"
+          @save="createToken(integration)"
+        ></ToggleIntegration>
+
+        <ToggleIntegration
+          default-open
+          is-new
+          v-if="isCreatingNewIntegration"
+          :integration="newIntegration"
+          @save="createToken(newIntegration)"
+          @cancel="resetCreateNewToken"
+        ></ToggleIntegration>
       </ul>
     </div>
   </ContentLayout>

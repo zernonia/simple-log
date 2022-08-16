@@ -47,9 +47,10 @@ export interface Tokens {
 }
 
 export interface Integrations {
-  id: string /* primary key */
+  id?: string /* primary key */
   name?: string
   project_name?: string
   channel_name?: string
   owner_id?: string
+  created_at?: string
 }
