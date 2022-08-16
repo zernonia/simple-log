@@ -4,9 +4,10 @@ import type { Users, Projects } from "~~/utils/interface"
 
 const { params, name, meta } = toRefs(useRoute())
 const client = useSupabaseClient()
+const user = useUser()
 const { projects, selectedProject } = useProjects()
 
-const { data: user } = useLazyAsyncData(
+const { data: userData } = useLazyAsyncData(
   "user",
   async () => {
     const { data } = await client.from<Users>("users").select("*").single()
@@ -14,6 +15,7 @@ const { data: user } = useLazyAsyncData(
   },
   { server: false }
 )
+syncRef(user, userData, { direction: "rtl" })
 
 useLazyAsyncData(
   "projects",

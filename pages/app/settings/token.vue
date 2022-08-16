@@ -3,9 +3,18 @@ import { Tokens } from "~~/utils/interface"
 
 const client = useSupabaseClient()
 const user = useSupabaseUser()
-const inputModel = ref({
-  name: "",
+
+const isCreatingNewToken = ref(false)
+const newToken = ref({
+  name: "captain",
 })
+const resetCreateNewToken = () => {
+  isCreatingNewToken.value = false
+  newToken.value = {
+    name: "captain",
+  }
+}
+
 const { data: tokens, refresh } = useLazyAsyncData(
   "tokens",
   async () => {
@@ -20,10 +29,23 @@ const createToken = async () => {
     method: "POST",
     body: {
       payload: {
-        id: "ccff374e-d2d6-440a-9b69-93d9f8a55967",
-        name: inputModel.value.name,
+        name: newToken.value.name,
         private: true,
         owner_id: user.value.id,
+      },
+    },
+  })
+  await refresh()
+  resetCreateNewToken()
+}
+
+const updateToken = async (token: Tokens) => {
+  const data = await $fetch("/api/token/create", {
+    method: "POST",
+    body: {
+      payload: {
+        id: token.id,
+        name: token.name,
       },
     },
   })
@@ -34,26 +56,66 @@ const { copy } = useClipboard()
 </script>
 
 <template>
-  <div class="flex flex-col p-4">
-    <h1 class="text-2xl font-bold pb-4">Token</h1>
+  <ContentLayout>
+    <template #header>API</template>
 
-    <div class="max-w-120 w-full mx-auto">
-      <input type="text" v-model="inputModel.name" />
-      <button @click="createToken">Create token</button>
+    <div class="max-w-120 mt-6 w-full mx-auto">
+      <button class="btn" :disabled="isCreatingNewToken" @click="isCreatingNewToken = true">Create token</button>
 
-      <ul class="w-full">
-        <li v-for="token in tokens" class="">
-          <h3>{{ token.name }}</h3>
-          <div class="w-full rounded-lg border-3 p-3 text-sm flex items-center justify-between">
-            <input type="text" :value="token.id" class="w-full max-w-82 blur-sm hover:blur-0 transition" disabled />
+      <h3 class="mt-6 font-semibold text-lg">My Tokens</h3>
+      <p class="text-sm text-gray-400">Tokens are required for publishing your events to LogSnag</p>
 
-            <div class="flex-shrink-0">
-              <button @click="copy(token.id)"><div class="i-uil-clipboard text-lg mr-2"></div></button>
-              <!-- <button><div class="i-uil-cog text-lg"></div></button> -->
+      <ul class="w-full mt-6">
+        <Toggle class="mb-4" v-for="token in tokens">
+          <template #label>
+            <div class="text-left">
+              <h5 class="text-lg font-medium">{{ token.name }}</h5>
+              <p class="text-xs text-gray-400">Created on {{ new Date(token.created_at).toLocaleDateString() }}</p>
             </div>
+          </template>
+
+          <div class="flex-shrink-0">
+            <div class="flex items-end justify-between px-1">
+              <FormKit
+                outer-class="flex-grow mr-2"
+                type="text"
+                label="Name"
+                v-model="token.name"
+                validation="required"
+              />
+              <FormKit type="submit" name="Save" @click="updateToken(token)" />
+            </div>
+
+            <button class="text-sm inline-flex" @click="copy(token.id)">
+              <div class="i-uil-clipboard text-lg mr-2"></div>
+              Copy token
+            </button>
           </div>
-        </li>
+        </Toggle>
+
+        <Toggle v-if="isCreatingNewToken" default-open class="border-gray-800">
+          <template #label>
+            <div class="text-left">
+              <h5 class="text-lg font-medium">{{ newToken.name }}</h5>
+            </div>
+          </template>
+
+          <div class="flex-shrink-0">
+            <div class="flex items-end justify-between px-1">
+              <FormKit
+                outer-class="flex-grow mr-2"
+                type="text"
+                label="Name"
+                v-model="newToken.name"
+                validation="required"
+              />
+              <FormKit type="submit" name="Save" @click="createToken" />
+            </div>
+
+            <button class="btn bg-red-500 w-max mx-1" @click="resetCreateNewToken">Cancel</button>
+          </div>
+        </Toggle>
       </ul>
     </div>
-  </div>
+  </ContentLayout>
 </template>

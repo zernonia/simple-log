@@ -41,10 +41,10 @@ const computeUrl = (integration: Integrations) => {
 </script>
 
 <template>
-  <div class="flex flex-col p-4">
-    <h1 class="text-2xl font-bold pb-4">Plugins</h1>
+  <ContentLayout>
+    <template #header>Plugins</template>
 
-    <div class="max-w-120 w-full mx-auto">
+    <div class="max-w-120 mt-6 w-full mx-auto">
       <button class="w-full border-3 rounded-xl p-3 flex items-center" @click="createToken('supabase')">
         <div class="i-logos-supabase-icon text-3xl mr-4"></div>
         <p class="font-medium">Supabase</p>
@@ -67,5 +67,5 @@ const computeUrl = (integration: Integrations) => {
         </li>
       </ul>
     </div>
-  </div>
+  </ContentLayout>
 </template>

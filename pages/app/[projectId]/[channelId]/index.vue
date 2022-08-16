@@ -5,11 +5,12 @@ const { events, isPendingEvents } = useEvents()
 </script>
 
 <template>
-  <div class="flex flex-col h-full">
-    <h3 v-if="selectedChannel?.name" class="sticky top-0 bg-white p-4 border-b font-semibold flex items-center">
+  <ContentLayout>
+    <template #header>
       <div class="i-ph-hash-bold mr-2"></div>
-      {{ selectedChannel.name }}
-    </h3>
+      {{ selectedChannel?.name }}</template
+    >
+
     <div class="bg-gray-50 flex-grow">
       <div class="w-max mx-auto p-4">
         <Loader v-if="isPendingEvents" />
@@ -18,5 +19,5 @@ const { events, isPendingEvents } = useEvents()
         </NuxtLink>
       </div>
     </div>
-  </div>
+  </ContentLayout>
 </template>
