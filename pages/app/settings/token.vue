@@ -56,6 +56,8 @@ const updateToken = async (token: Tokens) => {
   refresh()
 }
 
+const deleteToken = () => {}
+
 const { copy } = useClipboard()
 </script>
 
@@ -80,7 +82,7 @@ const { copy } = useClipboard()
           </template>
 
           <div class="flex-shrink-0">
-            <div class="flex items-end justify-between px-1">
+            <div class="flex items-end justify-between px-1 opacity-50 delay-300 hover:opacity-100 transition">
               <FormKit
                 outer-class="flex-grow mr-2"
                 type="text"
@@ -91,10 +93,16 @@ const { copy } = useClipboard()
               <FormKit type="submit" name="Save" @click="updateToken(token)" />
             </div>
 
-            <button class="text-sm inline-flex" @click="copy(token.id)">
-              <div class="i-uil-clipboard text-lg mr-2"></div>
-              Copy token
-            </button>
+            <div class="mt-1 mx-1 flex justify-between items-center">
+              <button class="btn-secondary text-xs" @click="copy(token.id)">
+                <div class="i-uil-clipboard text-base mr-2"></div>
+                Copy token
+              </button>
+
+              <button class="text-xs inline-flex text-red-500 hover:underline underline-offset-2" @click="deleteToken">
+                Delete Token
+              </button>
+            </div>
           </div>
         </Toggle>
 
@@ -117,7 +125,7 @@ const { copy } = useClipboard()
               <FormKit type="submit" name="Save" @click="createToken" />
             </div>
 
-            <button class="btn bg-red-500 w-max mx-1" @click="resetCreateNewToken">Cancel</button>
+            <button class="btn-danger mx-1 text-xs" @click="resetCreateNewToken">Cancel</button>
           </div>
         </Toggle>
       </ul>

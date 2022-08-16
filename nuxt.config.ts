@@ -12,7 +12,14 @@ export default defineNuxtConfig({
     transformers: [transformerDirective({ enforce: "pre" })], // enabled `@unocss/transformer-directives`,
 
     // core options
-    shortcuts: [],
+    shortcuts: [
+      {
+        "btn-secondary":
+          "font-medium inline-flex px-3 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition ease-in-out ring-transparent focus:ring-3 focus:ring-gray-300",
+        "btn-danger":
+          "font-medium inline-flex px-3 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 transition ease-in-out ring-transparent focus:ring-3 focus:ring-red-300",
+      },
+    ],
     rules: [],
   },
   nitro: {

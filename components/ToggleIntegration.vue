@@ -3,10 +3,10 @@ import { PropType } from "vue"
 import { Integrations } from "~~/utils/interface"
 
 const props = defineProps({
-  integration: Object as PropType<Integrations>,
+  integration: { type: Object as PropType<Integrations> },
   isNew: { type: Boolean, default: false },
 })
-const emits = defineEmits(["save", "cancel"])
+const emits = defineEmits(["save", "cancel", "delete"])
 
 const { copy, copied } = useClipboard()
 const computeUrl = (integration: Integrations) => {
@@ -46,7 +46,7 @@ watch(
     </template>
 
     <div class="flex-shrink-0">
-      <div class="flex items-end justify-between px-1">
+      <div class="flex items-end justify-between px-1 opacity-50 delay-300 hover:opacity-100 transition">
         <FormKit
           outer-class="w-1/2 mr-2"
           type="select"
@@ -66,11 +66,17 @@ watch(
         <FormKit type="submit" name="Save" @click="emits('save')" />
       </div>
 
-      <button v-if="isNew" class="btn bg-red-500 w-max mx-1" @click="emits('cancel')">Cancel</button>
-      <button v-else class="text-sm inline-flex" @click="copy(computeUrl(integration))">
-        <div class="i-uil-clipboard text-lg mr-2"></div>
-        {{ copied ? "Copied" : "Copy endpoint" }}
-      </button>
+      <button v-if="isNew" class="btn-danger text-xs mx-1" @click="emits('cancel')">Cancel</button>
+      <div v-else class="mt-1 mx-1 flex justify-between items-center">
+        <button class="btn-secondary text-xs" @click="copy(computeUrl(integration))">
+          <div class="i-uil-clipboard text-base mr-2"></div>
+          {{ copied ? "Copied" : "Copy endpoint" }}
+        </button>
+
+        <button class="text-xs inline-flex text-red-500 hover:underline underline-offset-2" @click="emits('delete')">
+          Delete Plugin
+        </button>
+      </div>
     </div>
   </Toggle>
 </template>

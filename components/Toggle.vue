@@ -18,7 +18,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="border-3 border-gray-100 px-3 rounded-xl flex flex-col w-full">
+  <div class="border-3 border-gray-100 px-4 rounded-xl flex flex-col w-full">
     <button class="py-3 flex justify-between items-center" @click="isToggleOpen = !isToggleOpen">
       <slot name="label"></slot>
 
