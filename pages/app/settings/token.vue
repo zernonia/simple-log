@@ -15,7 +15,11 @@ const resetCreateNewToken = () => {
   }
 }
 
-const { data: tokens, refresh } = useLazyAsyncData(
+const {
+  data: tokens,
+  pending,
+  refresh,
+} = useLazyAsyncData(
   "tokens",
   async () => {
     const { data } = await client.from<Tokens>("tokens").select("*")
@@ -60,13 +64,14 @@ const { copy } = useClipboard()
     <template #header>API</template>
 
     <div class="max-w-120 mt-6 w-full mx-auto">
-      <button class="btn" :disabled="isCreatingNewToken" @click="isCreatingNewToken = true">Create token</button>
+      <button class="btn w-max" :disabled="isCreatingNewToken" @click="isCreatingNewToken = true">Create token</button>
 
       <h3 class="mt-6 font-semibold text-lg">My Tokens</h3>
       <p class="text-sm text-gray-400">Tokens are required for publishing your events to SimpleLog</p>
 
       <ul class="w-full mt-6">
-        <Toggle class="mb-4" v-for="token in tokens">
+        <Loader v-if="pending && !tokens"></Loader>
+        <Toggle v-else class="mb-4" v-for="token in tokens">
           <template #label>
             <div class="text-left">
               <h5 class="text-lg font-medium">{{ token.name }}</h5>
