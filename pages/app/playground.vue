@@ -72,9 +72,7 @@ const submit = async () => {
       </div>
 
       <div class="flex-shrink-0 bg-gray-50 rounded-xl flex items-center justify-center px-16 py-8">
-        <div class="rounded-lg bg-white shadow-xl shadow-gray-200">
-          <LogCard :data="mappedPayload"></LogCard>
-        </div>
+        <LogCard :data="mappedPayload"></LogCard>
       </div>
     </div>
   </div>

@@ -24,7 +24,7 @@ onMounted(() => refresh())
 </script>
 
 <template>
-  <div class="bg-gray-50 py-12">
+  <div class="bg-gray-50 h-full flex-grow py-12">
     <div class="mx-auto w-max">
       <Loader v-if="pending && !events" />
       <div class="relative" v-for="event in events" :key="event.id" v-else>
