@@ -9,16 +9,23 @@ export default defineEventHandler(async (event) => {
     const payload = await useBody<SupabasePayload>(event)
     const tokenData = JSON.parse(await redis.get(`integrations-${tokenId}`)) as Integrations
 
-    const mapType = (type: SupabasePayload["type"]) => {
-      switch (type) {
+    const mapType = (payload: SupabasePayload) => {
+      switch (payload.type) {
         case "INSERT": {
-          return { name: "New", icon: "✨" }
+          return { name: "New", icon: "✨", description: JSON.stringify({ new: payload.record }) }
         }
         case "UPDATE": {
-          return { name: "Updated", icon: "💫" }
+          const getDifference = (a: any, b: any) =>
+            Object.fromEntries(Object.entries(b).filter(([key, val]) => key in a && a[key] !== val))
+
+          return {
+            name: "Updated",
+            icon: "💫",
+            description: JSON.stringify({ update: getDifference(payload.old_record, payload.record) }),
+          }
         }
         case "DELETE": {
-          return { name: "Deleted", icon: "🗑" }
+          return { name: "Deleted", icon: "🗑", description: JSON.stringify({ old: payload.old_record }) }
         }
       }
     }
@@ -28,9 +35,9 @@ export default defineEventHandler(async (event) => {
       input_owner_id: tokenData.owner_id,
       input_project: tokenData.project_name,
       input_channel: tokenData.channel_name,
-      input_name: `${mapType(payload.type).name} record on ${payload.table}`,
-      input_description: JSON.stringify({ new: payload.record, old: payload.old_record }),
-      input_icon: mapType(payload.type).icon,
+      input_name: `${mapType(payload).name} record on ${payload.table}`,
+      input_description: mapType(payload).description,
+      input_icon: mapType(payload).icon,
       input_notify: false,
       input_integration: "supabase",
     })
