@@ -39,23 +39,23 @@ const submit = async () => {
       <div class="w-full min-w-80 mr-8">
         <FormKit type="form" @submit="submit" v-model="payload">
           <FormKit
-            required
+            validation="required"
             type="select"
             :options="projectOptions"
             placeholder="Select a project"
-            label="Project name *"
+            label="Project name"
             name="project"
             v-model="payload.project"
           />
           <FormKit
-            required
+            validation="required"
             type="select"
             :options="channelOptions"
-            label="Channel name *"
+            label="Channel name"
             placeholder="Select a channel"
             name="channel"
           />
-          <FormKit required type="text" label="Event name *" placeholder="User Sign Up" name="event" />
+          <FormKit validation="required" type="text" label="Event name" placeholder="User Sign Up" name="event" />
           <FormKit type="textarea" label="Description (optional)" name="description" :rows="4" />
 
           <div class="formkit-outer flex">

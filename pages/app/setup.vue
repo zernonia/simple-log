@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const client = useSupabaseClient()
+import { castLowercaseHyphen } from "~~/utils/formkit"
+
+const user = useSupabaseUser()
 
 const payload = ref({
   project: "",
@@ -16,16 +18,31 @@ const submit = async () => {
 </script>
 
 <template>
-  <div class="flex flex-col">
-    <h1>Initial setup</h1>
+  <div class="flex flex-col max-w-102 mx-auto">
+    <div class="p-4 mt-12">
+      <h1 class="text-4xl font-bold">Welcome {{ user?.user_metadata?.full_name }}!</h1>
+      <p class="mt-4">Let's create your first project and channel!</p>
 
-    <div class="flex flex-col">
-      <label for="project">Project name</label>
-      <input type="text" v-model="payload.project" />
-      <label for="project">Channel name</label>
-      <input type="text" v-model="payload.channel" />
-
-      <button @click="submit">Submit</button>
+      <div class="mt-12">
+        <FormKit type="form" @submit="submit" v-model="payload">
+          <FormKit
+            label="Project name"
+            name="project"
+            type="text"
+            placeholder="Enter a project name"
+            validation="required"
+            :plugins="[castLowercaseHyphen]"
+          />
+          <FormKit
+            type="text"
+            label="Channel name"
+            name="channel"
+            placeholder="Enter a channel name"
+            validation="required"
+            :plugins="[castLowercaseHyphen]"
+          />
+        </FormKit>
+      </div>
     </div>
   </div>
 </template>

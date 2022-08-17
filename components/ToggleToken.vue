@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { PropType } from "vue"
 import { Tokens } from "~~/utils/interface"
+import { castLowercaseHyphen } from "~~/utils/formkit"
 
 const props = defineProps({
   token: Object as PropType<Tokens>,
@@ -28,7 +29,14 @@ const confirmDelete = () => {
 
     <div class="flex-shrink-0">
       <div class="flex items-end justify-between px-1 opacity-50 delay-300 hover:opacity-100 transition">
-        <FormKit outer-class="flex-grow mr-2" type="text" label="Name" v-model="token.name" validation="required" />
+        <FormKit
+          outer-class="flex-grow mr-2"
+          type="text"
+          label="Name"
+          v-model="token.name"
+          validation="required"
+          :plugins="[castLowercaseHyphen]"
+        />
         <FormKit type="submit" name="Save" @click="emits('save')" />
       </div>
 

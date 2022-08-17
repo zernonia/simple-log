@@ -5,6 +5,9 @@ import transformerDirective from "@unocss/transformer-directives"
 export default defineNuxtConfig({
   modules: ["@unocss/nuxt", "@nuxtjs/supabase", "@vueuse/nuxt", "@formkit/nuxt"],
   css: ["@unocss/reset/tailwind.css", "~~/assets/formkit.css", "~~/assets/main.css"],
+  formkit: {
+    configFile: "./formkit.config.ts",
+  },
   unocss: {
     // presets
     uno: true, // enabled `@unocss/preset-uno`

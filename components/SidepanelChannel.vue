@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { castLowercaseHyphen } from "~~/utils/formkit"
+
 const { params } = toRefs(useRoute())
 const { selectedProject } = useProjects()
 
@@ -26,7 +28,7 @@ const confirmCreate = () => {
       <template #header>Create Channel</template>
 
       <div>
-        <FormKit v-model="newChannelName" label="Channel Name" type="text">
+        <FormKit v-model="newChannelName" label="Channel Name" type="text" :plugins="[castLowercaseHyphen]">
           <template #prefix><div class="i-ph-hash-bold text-lg mr-2"></div></template>
         </FormKit>
       </div>

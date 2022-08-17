@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Tokens } from "~~/utils/interface"
+import { castLowercaseHyphen } from "~~/utils/formkit"
 
 const client = useSupabaseClient()
 const user = useSupabaseUser()
@@ -56,10 +57,6 @@ const updateToken = async (token: Tokens) => {
   refresh()
 }
 
-const deleteToken = () => {}
-
-const { copy } = useClipboard()
-
 const isConfirmDeleting = ref(false)
 const confirmDelete = () => {
   isConfirmDeleting.value = false
@@ -95,6 +92,7 @@ const confirmDelete = () => {
                 label="Name"
                 v-model="newToken.name"
                 validation="required"
+                :plugins="[castLowercaseHyphen]"
               />
               <FormKit type="submit" name="Save" @click="createToken" />
             </div>
