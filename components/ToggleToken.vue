@@ -7,6 +7,7 @@ const props = defineProps({
   token: Object as PropType<Tokens>,
   isNew: Boolean,
 })
+
 const emits = defineEmits(["save", "cancel", "delete"])
 
 const { copy, copied } = useClipboard()

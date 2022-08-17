@@ -13,7 +13,7 @@ const confirmCreate = () => {
 </script>
 
 <template>
-  <div>
+  <div class="w-55">
     <h2 class="text-xl font-semibold pb-3">{{ selectedProject.name }}</h2>
     <div class="my-3 flex justify-between">
       <h4 class="uppercase text-sm font-bold text-gray-400">Channel</h4>

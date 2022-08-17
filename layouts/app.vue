@@ -87,19 +87,23 @@ onUnmounted(() => {
     </div>
 
     <div
-      :class="[meta.sidePanel ? 'w-60 p-4 border-x ' : 'w-0 p-0 border-r']"
-      class="flex flex-col flex-shrink-0 transition-all ease-in-out duration-500"
+      :class="[meta.sidePanel ? 'w-64  border-x ' : 'w-0  border-r']"
+      class="flex flex-col flex-shrink-0 transition-width ease-in-out duration-500"
     >
-      <div v-if="name.toString().includes('settings')" class="flex flex-col">
-        <h4 class="my-3 uppercase text-sm font-bold text-gray-400">Settings</h4>
+      <transition name="fade">
+        <div class="p-4 overflow-hidden" v-if="meta.sidePanel">
+          <div v-if="name.toString().includes('settings')" class="flex flex-col">
+            <h4 class="my-3 uppercase text-sm font-bold text-gray-400">Settings</h4>
 
-        <NuxtLink class="panel" to="/app/settings/profile">Profile </NuxtLink>
-        <!-- <NuxtLink class="panel" to="/app/settings/billing">Billing </NuxtLink> -->
-        <NuxtLink class="panel" to="/app/settings/token">Token </NuxtLink>
-        <NuxtLink class="panel" to="/app/settings/plugins">Plugins</NuxtLink>
-      </div>
+            <NuxtLink class="panel" to="/app/settings/profile">Profile </NuxtLink>
+            <!-- <NuxtLink class="panel" to="/app/settings/billing">Billing </NuxtLink> -->
+            <NuxtLink class="panel" to="/app/settings/token">Token </NuxtLink>
+            <NuxtLink class="panel" to="/app/settings/plugins">Plugins</NuxtLink>
+          </div>
 
-      <SidepanelChannel v-if="selectedProject?.channels"></SidepanelChannel>
+          <SidepanelChannel v-if="selectedProject?.channels"></SidepanelChannel>
+        </div>
+      </transition>
     </div>
     <div class="w-full flex-grow overflow-y-auto">
       <slot></slot>
