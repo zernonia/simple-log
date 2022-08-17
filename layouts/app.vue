@@ -27,11 +27,13 @@ useLazyAsyncData(
   { server: false }
 )
 
+const { play } = useSound()
 let subscribeEvent: RealtimeSubscription
 onMounted(() => {
   subscribeEvent = client
     .from("events")
     .on("INSERT", (payload) => {
+      play()
       console.log("Change received!", payload)
     })
     .subscribe()
