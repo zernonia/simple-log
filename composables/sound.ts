@@ -18,7 +18,13 @@ export const useSound = () => {
     audio.value.volume = volumn.value
   })
 
-  const play = () => audio.value && audio.value.play()
+  const play = async () => {
+    try {
+      audio.value && (await audio.value.play())
+    } catch (err) {
+      console.error(err.message)
+    }
+  }
 
   return { audio, play }
 }

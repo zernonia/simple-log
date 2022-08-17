@@ -21,6 +21,7 @@
     "nuxt": "3.0.0-rc.8"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^1.0.0-beta.1",
     "@formkit/nuxt": "^1.0.0-beta.10",
     "@formkit/themes": "^1.0.0-beta.10",
     "ioredis": "^5.2.2",

@@ -304,6 +304,11 @@
   resolved "https://registry.yarnpkg.com/@esbuild/linux-loong64/-/linux-loong64-0.15.2.tgz#e8b88813c3a1734504f43315147ebb9bf488bbe4"
   integrity sha512-lcfRxKY3CIBFop9slpNu04+fGro1S0QN5n+HrbOwR6eHHdYeidvMtSVK4vbbYmEMwQr3MFAt2yU6bhwl4dqL/A==
 
+"@formkit/auto-animate@^1.0.0-beta.1":
+  version "1.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@formkit/auto-animate/-/auto-animate-1.0.0-beta.1.tgz#aec5fd2ea5e499ceb7eb117c7fd1217a7f100748"
+  integrity sha512-I3OWOBaPZKSJL4bsooXI8kC3q7bcgibD2oML0P/Lir6MnbvUe/0/7EH8br024juvM/Ulm9C9xGx9CJUQYrOWSA==
+
 "@formkit/core@1.0.0-beta.10":
   version "1.0.0-beta.10"
   resolved "https://registry.yarnpkg.com/@formkit/core/-/core-1.0.0-beta.10.tgz#eb8315a80d9e74cb612b1faebf765a8f8f344bf9"

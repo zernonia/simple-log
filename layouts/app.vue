@@ -27,6 +27,7 @@ useLazyAsyncData(
   { server: false }
 )
 
+const { events, channelEvents } = useEvents()
 const { play } = useSound()
 let subscribeEvent: RealtimeSubscription
 onMounted(() => {
@@ -34,6 +35,9 @@ onMounted(() => {
     .from("events")
     .on("INSERT", (payload) => {
       play()
+      if (events.value.length) events.value = [payload.new, ...events.value]
+      if (channelEvents.value[payload.new.channel_id])
+        channelEvents.value[payload.new.channel_id] = [payload.new, ...channelEvents.value[payload.new.channel_id]]
       console.log("Change received!", payload)
     })
     .subscribe()

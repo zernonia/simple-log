@@ -2,23 +2,23 @@
 import { Events } from "~~/utils/interface"
 const { params } = toRefs(useRoute())
 
-const { events, isPendingEvents } = useEvents()
+const { channelEvents, isPendingEvents } = useEvents()
 
 const client = useSupabaseClient()
-const { data, pending } = useLazyAsyncData(
+const { pending } = useLazyAsyncData(
   `events-${params.value.channelId}`,
   async () => {
     const { data } = await client
       .from<Events>("events")
-      .select("id, name, description, created_at, integration")
+      .select("id, icon, name, description, created_at, integration")
       .eq("channel_id", params.value.channelId.toString())
       .order("created_at", { ascending: false })
-    events.value = data
+    channelEvents.value[params.value.channelId.toString()] = data
+
     return data
   },
   { server: false }
 )
-syncRef(events, data, { direction: "rtl" })
 syncRef(isPendingEvents, pending, { direction: "rtl" })
 </script>
 
