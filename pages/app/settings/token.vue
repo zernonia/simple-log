@@ -70,7 +70,7 @@ const confirmDelete = () => {
   <ContentLayout>
     <template #header>API</template>
 
-    <div class="max-w-120 mt-6 w-full mx-auto">
+    <div class="max-w-120 mt-12 w-full mx-auto">
       <button class="btn w-max" :disabled="isCreatingNewToken" @click="isCreatingNewToken = true">Create token</button>
 
       <h3 class="mt-6 font-semibold text-lg">My Tokens</h3>

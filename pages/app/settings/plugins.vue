@@ -56,7 +56,7 @@ const createIntegration = (type: "supabase") => {
   <ContentLayout>
     <template #header>Plugins</template>
 
-    <div class="max-w-120 mt-6 w-full mx-auto">
+    <div class="max-w-120 mt-12 w-full mx-auto">
       <div class="flex space-x-4">
         <button
           class="w-32 h-32 border-3 border-gray-100 hover:border-gray-800 transition rounded-xl p-3 flex flex-col justify-center items-center"

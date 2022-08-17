@@ -32,10 +32,10 @@ const submit = async () => {
 </script>
 
 <template>
-  <div class="flex flex-col p-4 mx-auto">
-    <h1 class="text-2xl font-bold pb-4">Playground</h1>
+  <ContentLayout>
+    <template #header>Playground</template>
 
-    <div class="flex flex-col lg:flex-row max-w-screen-lg mx-auto">
+    <div class="mt-12 flex flex-col lg:flex-row max-w-screen-lg mx-auto">
       <div class="w-full min-w-80 mr-8">
         <FormKit type="form" @submit="submit" v-model="payload">
           <FormKit
@@ -75,5 +75,5 @@ const submit = async () => {
         <LogCard :data="mappedPayload"></LogCard>
       </div>
     </div>
-  </div>
+  </ContentLayout>
 </template>

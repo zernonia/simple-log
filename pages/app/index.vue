@@ -22,14 +22,14 @@ onMounted(() => refresh())
 <template>
   <div class="bg-gray-50 min-h-screen py-12">
     <div class="mx-auto w-max">
-      <Loader v-if="pending && !events" />
-      <div v-else v-auto-animate>
+      <Loader v-if="pending && !events.length" />
+      <div v-auto-animate>
         <div class="relative" v-for="event in events" :key="event.id">
           <NuxtLink @click="ev = event" :to="`/app/${event.project_id}/${event.channel_id}/${event.id}`">
             <LogCard :data="event"></LogCard>
           </NuxtLink>
 
-          <button class="absolute left-full">a</button>
+          <!-- <button class="absolute left-full">a</button> -->
         </div>
       </div>
     </div>

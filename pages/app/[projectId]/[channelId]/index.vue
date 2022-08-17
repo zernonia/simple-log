@@ -11,7 +11,7 @@ const { currentChannelEvents, isPendingEvents } = useEvents()
       {{ selectedChannel?.name }}</template
     >
     <div class="bg-gray-50 flex-grow">
-      <div class="w-max mx-auto p-4">
+      <div class="w-max mx-auto p-4 mt-6">
         <Loader v-if="isPendingEvents" />
         <div v-else v-auto-animate>
           <div class="relative" v-for="event in currentChannelEvents" :key="event.id">

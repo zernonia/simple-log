@@ -13,11 +13,16 @@ defineProps({
       <div class="rounded-full bg-gray-50 w-9 h-9 flex items-center justify-center">
         {{ data.icon ?? "⚡️" }}
       </div>
-      <p class="text-xs mt-1 text-gray-400">{{ useTimeAgo(data.created_at).value }}</p>
+      <p class="text-xs mt-1 text-gray-400">
+        {{ useTimeAgo(data.created_at).value }} •
+        {{
+          new Date(data.created_at).toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric", hour12: true })
+        }}
+      </p>
     </div>
     <div class="mt-3 flex-grow">
       <div class="flex items-center">
-        <h3 class="font-medium text-gray-900">{{ data.name }}</h3>
+        <h3 class="font-medium text-gray-800">{{ data.name }}</h3>
         <p class="text-xs font-medium rounded-full bg-green-200 text-green-500 px-2 py-1 ml-2" v-if="data.integration">
           {{ data.integration }}
         </p>
