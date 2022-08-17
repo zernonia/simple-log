@@ -92,7 +92,7 @@ onUnmounted(() => {
     >
       <transition name="fade">
         <div class="p-4 overflow-hidden" v-if="meta.sidePanel">
-          <div v-if="name.toString().includes('settings')" class="flex flex-col">
+          <div v-if="name.toString().includes('app-settings')" class="flex flex-col">
             <h4 class="my-3 uppercase text-sm font-bold text-gray-400">Settings</h4>
 
             <NuxtLink class="panel" to="/app/settings/profile">Profile </NuxtLink>

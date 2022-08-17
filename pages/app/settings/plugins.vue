@@ -71,8 +71,8 @@ const createIntegration = (type: "supabase") => {
           to="https://github.com/zernonia/simple-log/issues"
           target="_blank"
         >
-          <div class="i-uil-plus text-5xl"></div>
-          <p class="text-sm">Suggest new integrations</p>
+          <div class="i-uil-plus text-4xl"></div>
+          <p class="text-xs mt-1">Suggest new integrations</p>
         </NuxtLink>
       </div>
 
