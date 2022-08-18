@@ -2,7 +2,9 @@
 const client = useSupabaseClient()
 const user = useSupabaseUser()
 
+const isLoading = ref(false)
 const signIn = async () => {
+  isLoading.value = true
   await client.auth.signIn({ provider: "github" }, { redirectTo: window.location.href })
 }
 
@@ -19,9 +21,9 @@ watch(
   <div class="flex flex-col items-center mt-20">
     <h2 class="text-5xl font-extrabold">Login</h2>
 
-    <button class="btn-primary mt-8" @click="signIn">
+    <ButtonLoader :loading="isLoading" class="btn-primary mt-8" @click="signIn">
       <div class="i-uil-github mr-2 text-xl"></div>
       Login with GitHub
-    </button>
+    </ButtonLoader>
   </div>
 </template>

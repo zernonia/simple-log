@@ -7,9 +7,14 @@ const { currentChannelEvents, isPendingEvents } = useEvents()
 <template>
   <ContentLayout>
     <template #header>
-      <div class="i-ph-hash-bold mr-2"></div>
-      {{ selectedChannel?.name }}</template
-    >
+      <div class="flex w-full items-center justify-between">
+        <div class="flex items-center">
+          <div class="i-ph-hash-bold mr-2"></div>
+          {{ selectedChannel?.name }}
+        </div>
+        <TextSearch></TextSearch>
+      </div>
+    </template>
     <div class="bg-gray-50 flex-grow">
       <div class="w-max mx-auto p-4 mt-6">
         <Loader v-if="isPendingEvents" />

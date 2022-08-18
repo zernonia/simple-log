@@ -36,10 +36,6 @@ onMounted(() => {
 onUnmounted(() => {
   subscribeEvent.unsubscribe()
 })
-
-definePageMeta({
-  middleware: ["auth"],
-})
 </script>
 
 <template>
@@ -47,7 +43,8 @@ definePageMeta({
     <div class="p-3 w-18 flex flex-col justify-between flex-shrink-0">
       <div class="flex flex-col space-y-2">
         <NuxtLink to="/app/" class="circle-panel">
-          <div class="i-uil-box text-xl"></div>
+          <!-- <div class="i-uil-box text-xl"></div> -->
+          <img src="~~/assets/logo.svg" class="p-1.5 filter opacity-100 hover:opacity-50 transition" />
         </NuxtLink>
         <NuxtLink
           v-for="project in projects"
