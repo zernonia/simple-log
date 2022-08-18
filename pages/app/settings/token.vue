@@ -43,24 +43,6 @@ const createToken = async () => {
   await refresh()
   resetCreateNewToken()
 }
-
-const updateToken = async (token: Tokens) => {
-  const data = await $fetch("/api/token/create", {
-    method: "POST",
-    body: {
-      payload: {
-        id: token.id,
-        name: token.name,
-      },
-    },
-  })
-  refresh()
-}
-
-const isConfirmDeleting = ref(false)
-const confirmDelete = () => {
-  isConfirmDeleting.value = false
-}
 </script>
 
 <template>
@@ -68,14 +50,16 @@ const confirmDelete = () => {
     <template #header>API</template>
 
     <div class="max-w-120 mt-12 w-full mx-auto">
-      <button class="btn w-max" :disabled="isCreatingNewToken" @click="isCreatingNewToken = true">Create token</button>
+      <button class="btn btn-primary w-max" :disabled="isCreatingNewToken" @click="isCreatingNewToken = true">
+        Create token
+      </button>
 
       <h3 class="mt-6 font-semibold text-lg">My Tokens</h3>
       <p class="text-sm text-gray-400">Tokens are required for publishing your events to SimpleLog</p>
 
       <ul class="w-full mt-6">
         <Loader v-if="pending && !tokens"></Loader>
-        <ToggleToken :token="token" v-else v-for="token in tokens"></ToggleToken>
+        <ToggleToken :refresh="refresh" :token="token" v-else v-for="token in tokens"></ToggleToken>
 
         <Toggle v-if="isCreatingNewToken" default-open class="border-gray-800">
           <template #label>
@@ -85,30 +69,22 @@ const confirmDelete = () => {
           </template>
 
           <div class="flex-shrink-0">
-            <div class="flex items-end justify-between px-1">
-              <FormKit
-                outer-class="flex-grow mr-2"
-                type="text"
-                label="Name"
-                v-model="newToken.name"
-                validation="required"
-                :plugins="[castLowercaseHyphen]"
-              />
-              <FormKit type="submit" name="Save" @click="createToken" />
-            </div>
-            <button class="btn-danger mx-1 text-sm" @click="resetCreateNewToken">Cancel</button>
+            <FormKit type="form" :actions="false" @submit="createToken">
+              <div class="flex items-end justify-between px-1">
+                <FormKit
+                  outer-class="flex-grow mr-2"
+                  type="text"
+                  label="Name"
+                  v-model="newToken.name"
+                  validation="required"
+                  :plugins="[castLowercaseHyphen]"
+                />
+                <FormKit type="submit" name="Save" />
+              </div>
+            </FormKit>
+            <button class="btn btn-danger mx-1 text-sm" @click="resetCreateNewToken">Cancel</button>
           </div>
         </Toggle>
-
-        <Modal v-model:open="isConfirmDeleting">
-          <template #header>Delete</template>
-          <p class="text-gray-800 mb-6">Are you sure you want to delete the plugin? This action cannot be undone.</p>
-
-          <template #footer="{ cancel }">
-            <button class="btn-secondary bg-gray-50" @click="cancel">Cancel</button>
-            <button class="btn-danger" @click="confirmDelete">Delete</button>
-          </template>
-        </Modal>
       </ul>
     </div>
   </ContentLayout>

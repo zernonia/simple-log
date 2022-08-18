@@ -1,14 +1,32 @@
 <script setup lang="ts">
-const props = defineProps({ open: Boolean })
-const emits = defineEmits(["update:open", "confirm"])
+const props = defineProps({ open: Boolean, confirmAction: Function })
+const emits = defineEmits(["update:open"])
 
 const el = ref()
 onClickOutside(el, () => {
+  if (isLoading.value) return
   emits("update:open", !props.open)
 })
 
+const isLoading = ref(false)
 const cancel = () => emits("update:open", !props.open)
-const confirm = () => emits("confirm")
+const confirm = async (ev: Event) => {
+  isLoading.value = true
+  await props.confirmAction()
+  isLoading.value = false
+  emits("update:open", !props.open)
+}
+
+watch(
+  () => props.open,
+  (n) => {
+    if (!n) return
+    nextTick(() => {
+      const input = el.value?.querySelector("input")
+      if (input) input.focus()
+    })
+  }
+)
 </script>
 
 <template>
@@ -24,10 +42,13 @@ const confirm = () => emits("confirm")
         <section class="px-6 py-3 text-[15px]">
           <slot>this is body</slot>
         </section>
-        <section class="px-6 py-4 bg-gray-50 flex justify-end space-x-2">
-          <slot name="footer" :cancel="cancel" :confirm="confirm">
-            <button class="btn-danger">Cancel</button>
-            <button class="btn">Confirm</button>
+        <section
+          class="px-6 py-4 bg-gray-50 flex justify-end space-x-2 transition"
+          :class="{ 'pointer-events-none opacity-50': isLoading }"
+        >
+          <slot name="footer" :cancel="cancel" :confirm="confirm" :loading="isLoading">
+            <button class="btn btn-danger">Cancel</button>
+            <button :data-loading="isLoading" class="btn btn-primary">Confirm</button>
           </slot>
         </section>
       </div>

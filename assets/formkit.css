@@ -24,6 +24,7 @@
   @apply text-red-500 mb-1 text-xs;
 }
 
+.btn-loader[data-loading="true"]::before,
 [data-loading] [data-type="submit"] .formkit-input::before {
   -webkit-animation: rotate 0.5s linear infinite;
   animation: rotate 0.5s linear infinite;
@@ -32,6 +33,8 @@
   border-right-color: transparent;
   margin-right: 0.75em;
 }
+
+.btn-loader::before,
 [data-type="submit"] .formkit-input::before {
   box-sizing: border-box;
   content: "";

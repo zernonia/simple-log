@@ -17,16 +17,6 @@ const { data: userData } = useLazyAsyncData(
 )
 syncRef(user, userData, { direction: "rtl" })
 
-useLazyAsyncData(
-  "projects",
-  async () => {
-    const { data } = await client.from<Projects>("projects").select("*, channels!project_id(*)")
-    projects.value = data
-    return data
-  },
-  { server: false }
-)
-
 const { events, channelEvents } = useEvents()
 const { play } = useSound()
 let subscribeEvent: RealtimeSubscription
@@ -105,7 +95,7 @@ onUnmounted(() => {
         </div>
       </transition>
     </div>
-    <div class="w-full flex-grow overflow-y-auto">
+    <div class="w-full flex-grow overflow-y-auto overflow-x-hidden">
       <slot></slot>
     </div>
   </div>

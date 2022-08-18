@@ -1,5 +1,8 @@
 <script setup lang="ts">
 const { back } = useRouter()
+
+const { selectedProject, refresh } = useProjects()
+const client = useSupabaseClient()
 </script>
 
 <template>
@@ -11,6 +14,20 @@ const { back } = useRouter()
       </div>
     </template>
 
-    <div class="p-6">Project settings</div>
+    <Loader v-if="!selectedProject"></Loader>
+    <div v-else class="max-w-120 mt-12 w-full mx-auto">
+      <h3 class="formkit-label">Project Name</h3>
+      <p>{{ selectedProject.name }}</p>
+
+      <h3 class="formkit-label mt-12">Channels</h3>
+
+      <ul>
+        <ProjectChannel
+          @refresh="refresh"
+          v-for="channel in selectedProject.channels"
+          :channel="channel"
+        ></ProjectChannel>
+      </ul>
+    </div>
   </ContentLayout>
 </template>

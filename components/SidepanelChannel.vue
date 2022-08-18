@@ -1,13 +1,19 @@
 <script setup lang="ts">
 import { castLowercaseHyphen } from "~~/utils/formkit"
+import { Channels } from "~~/utils/interface"
 
 const { params } = toRefs(useRoute())
-const { selectedProject } = useProjects()
+const { selectedProject, refresh } = useProjects()
+const client = useSupabaseClient()
 
 const isCreatingNewChannel = ref(false)
 const newChannelName = ref("")
-const confirmCreate = () => {
-  isCreatingNewChannel.value = false
+const confirmCreate = async () => {
+  const { data, error } = await client.from<Channels>("channels").insert({
+    name: newChannelName.value,
+    project_id: selectedProject.value.id,
+  })
+  await refresh()
   newChannelName.value = ""
 }
 </script>
@@ -31,12 +37,12 @@ const confirmCreate = () => {
         <div class="i-ph-hash-bold mr-2"></div>
         {{ channel.name }}
       </div>
-      <div class="flex opacity-0 transition group-hover:opacity-100 hover:text-gray-800">
+      <!-- <div class="flex opacity-0 transition group-hover:opacity-100 hover:text-gray-800">
         <NuxtLink :to="`/app/${params.projectId}/${channel.id}/settings`"><div class="i-uil-cog"></div></NuxtLink>
-      </div>
+      </div> -->
     </NuxtLink>
 
-    <Modal v-model:open="isCreatingNewChannel">
+    <Modal v-model:open="isCreatingNewChannel" :confirm-action="confirmCreate">
       <template #header>Create Channel</template>
 
       <div>
@@ -44,11 +50,10 @@ const confirmCreate = () => {
           <template #prefix><div class="i-ph-hash-bold text-lg mr-2"></div></template>
         </FormKit>
       </div>
-      <!-- <p class="text-gray-800 mb-6">Are you sure you want to delete the token? This action cannot be undone.</p> -->
 
-      <template #footer="{ cancel }">
-        <button class="btn-secondary bg-gray-50" @click="cancel">Cancel</button>
-        <button class="btn" @click="confirmCreate">Create Channel</button>
+      <template #footer="{ cancel, confirm, loading }">
+        <button class="btn btn-secondary bg-gray-50" @click="cancel">Cancel</button>
+        <ButtonLoader class="btn btn-primary" @click="confirm" :loading="loading">Create Channel</ButtonLoader>
       </template>
     </Modal>
   </div>

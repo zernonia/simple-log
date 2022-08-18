@@ -13,7 +13,7 @@ const { back } = useRouter()
     </template>
 
     <div class="bg-gray-50 flex-grow">
-      <div class="w-max mx-auto p-4">
+      <div class="w-max mx-auto p-4 mt-6">
         <Loader v-if="!event" />
         <div v-else>
           <LogCard :data="event"></LogCard>

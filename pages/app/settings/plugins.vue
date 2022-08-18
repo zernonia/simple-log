@@ -17,19 +17,6 @@ const {
   { server: false }
 )
 
-const createToken = async (integration: Integrations) => {
-  const data = await $fetch("/api/integration/create", {
-    method: "POST",
-    body: {
-      payload: {
-        owner_id: user.value.id,
-        ...integration,
-      },
-    },
-  })
-  refresh()
-}
-
 const { projects } = useProjects()
 const isCreatingNewIntegration = ref(false)
 const newIntegration = ref<Integrations>({
@@ -84,7 +71,7 @@ const createIntegration = (type: "supabase") => {
         <ToggleIntegration
           v-for="integration in integrations"
           :integration="integration"
-          @save="createToken(integration)"
+          :refresh="refresh"
         ></ToggleIntegration>
 
         <ToggleIntegration
@@ -92,7 +79,7 @@ const createIntegration = (type: "supabase") => {
           is-new
           v-if="isCreatingNewIntegration"
           :integration="newIntegration"
-          @save="createToken(newIntegration)"
+          :refresh="refresh"
           @cancel="resetCreateNewToken"
         ></ToggleIntegration>
       </ul>
