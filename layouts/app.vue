@@ -36,6 +36,10 @@ onMounted(() => {
 onUnmounted(() => {
   subscribeEvent.unsubscribe()
 })
+
+definePageMeta({
+  middleware: ["auth"],
+})
 </script>
 
 <template>

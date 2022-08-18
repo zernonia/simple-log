@@ -64,7 +64,7 @@ const updateToken = async () => {
       </FormKit>
 
       <div class="mt-1 mx-1 flex justify-between items-center">
-        <button class="btn btn-secondary text-sm" @click="copy(token.id)">
+        <button class="btn-secondary text-sm" @click="copy(token.id)">
           <div class="i-uil-clipboard text-base mr-2"></div>
           Copy token
         </button>
@@ -83,8 +83,8 @@ const updateToken = async () => {
       <p class="text-gray-800 mb-6">Are you sure you want to delete the token? This action cannot be undone.</p>
 
       <template #footer="{ cancel, confirm, loading }">
-        <button class="btn btn-secondary bg-gray-50" @click="cancel">Cancel</button>
-        <ButtonLoader class="btn btn-danger" @click="confirm" :loading="loading">Delete</ButtonLoader>
+        <button class="btn-secondary bg-gray-50" @click="cancel">Cancel</button>
+        <ButtonLoader class="btn-danger" @click="confirm" :loading="loading">Delete</ButtonLoader>
       </template>
     </Modal>
   </Toggle>

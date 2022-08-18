@@ -59,8 +59,8 @@ const confirmCreate = async () => {
       </div>
 
       <template #footer="{ cancel, confirm }">
-        <button class="btn btn-secondary bg-gray-50" @click.prevent.stop="cancel">Cancel</button>
-        <FormKit type="submit" class="btn btn-primary">Create Channel</FormKit>
+        <button class="btn-secondary bg-gray-50" @click.prevent.stop="cancel">Cancel</button>
+        <FormKit type="submit" class="btn-primary">Create Channel</FormKit>
       </template>
     </Modal>
   </div>

@@ -35,8 +35,8 @@ const confirmDelete = async () => {
       </p>
 
       <template #footer="{ cancel, confirm, loading }">
-        <button class="btn btn-secondary bg-gray-50" @click="cancel">Cancel</button>
-        <ButtonLoader class="btn btn-danger" @click="confirm" :loading="loading">Delete</ButtonLoader>
+        <button class="btn-secondary bg-gray-50" @click="cancel">Cancel</button>
+        <ButtonLoader class="btn-danger" @click="confirm" :loading="loading">Delete</ButtonLoader>
       </template>
     </Modal>
   </div>

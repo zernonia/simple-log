@@ -50,7 +50,7 @@ const createToken = async () => {
     <template #header>API</template>
 
     <div class="max-w-120 mt-12 w-full mx-auto">
-      <button class="btn btn-primary w-max" :disabled="isCreatingNewToken" @click="isCreatingNewToken = true">
+      <button class="btn-primary w-max" :disabled="isCreatingNewToken" @click="isCreatingNewToken = true">
         Create token
       </button>
 
@@ -82,7 +82,7 @@ const createToken = async () => {
                 <FormKit type="submit" name="Save" />
               </div>
             </FormKit>
-            <button class="btn btn-danger mx-1 text-sm" @click="resetCreateNewToken">Cancel</button>
+            <button class="btn-danger mx-1 text-sm" @click="resetCreateNewToken">Cancel</button>
           </div>
         </Toggle>
       </ul>

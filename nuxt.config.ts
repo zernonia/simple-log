@@ -3,7 +3,7 @@ import transformerDirective from "@unocss/transformer-directives"
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  modules: ["@unocss/nuxt", "@nuxtjs/supabase", "@vueuse/nuxt", "@formkit/nuxt"],
+  modules: ["@unocss/nuxt", "@nuxtjs/supabase", "@vueuse/nuxt", "@formkit/nuxt", "@nuxt/content"],
   css: ["@unocss/reset/tailwind.css", "~~/assets/formkit.css", "~~/assets/main.css"],
   formkit: {
     configFile: "./formkit.config.ts",
@@ -18,9 +18,9 @@ export default defineNuxtConfig({
     shortcuts: [
       {
         btn: "font-medium rounded-lg py-2 px-3 outline-none transition ring-3 ring-transparent disabled:opacity-50 relative inline-flex justify-center items-center",
-        "btn-primary": "bg-gray-900 text-white focus:ring-gray-300",
-        "btn-secondary": " bg-gray-100 hover:bg-gray-200 focus:ring-gray-300",
-        "btn-danger": "bg-red-500 text-white hover:bg-red-600 focus:ring-red-300",
+        "btn-primary": "btn bg-gray-900 text-white focus:ring-gray-300",
+        "btn-secondary": "btn bg-gray-100 hover:bg-gray-200 focus:ring-gray-300",
+        "btn-danger": "btn bg-red-500 text-white hover:bg-red-600 focus:ring-red-300",
       },
     ],
     rules: [],

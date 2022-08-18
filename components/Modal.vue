@@ -48,8 +48,8 @@ watch(
             :class="{ 'pointer-events-none opacity-50': isLoading }"
           >
             <slot name="footer" :cancel="cancel" :confirm="confirm" :loading="isLoading">
-              <button class="btn btn-danger">Cancel</button>
-              <button :data-loading="isLoading" class="btn btn-primary">Confirm</button>
+              <button class="btn-danger">Cancel</button>
+              <button :data-loading="isLoading" class="btn-primary">Confirm</button>
             </slot>
           </section>
         </FormKit>

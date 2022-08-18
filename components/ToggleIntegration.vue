@@ -99,9 +99,9 @@ const updateToken = async () => {
         </div>
       </FormKit>
 
-      <button v-if="isNew" class="btn btn-danger text-sm mx-1" @click="emits('cancel')">Cancel</button>
+      <button v-if="isNew" class="btn-danger text-sm mx-1" @click="emits('cancel')">Cancel</button>
       <div v-else class="mt-1 mx-1 flex justify-between items-center">
-        <button class="btn btn-secondary text-sm" @click="copy(computeUrl(integration))">
+        <button class="btn-secondary text-sm" @click="copy(computeUrl(integration))">
           <div class="i-uil-clipboard text-base mr-2"></div>
           {{ copied ? "Copied" : "Copy endpoint" }}
         </button>
@@ -120,8 +120,8 @@ const updateToken = async () => {
       <p class="text-gray-800 mb-6">Are you sure you want to delete the plugin? This action cannot be undone.</p>
 
       <template #footer="{ cancel, confirm, loading }">
-        <button class="btn btn-secondary bg-gray-50" @click="cancel">Cancel</button>
-        <ButtonLoader class="btn btn-danger" @click="confirm" :loading="loading">Delete</ButtonLoader>
+        <button class="btn-secondary bg-gray-50" @click="cancel">Cancel</button>
+        <ButtonLoader class="btn-danger" @click="confirm" :loading="loading">Delete</ButtonLoader>
       </template>
     </Modal>
   </Toggle>
