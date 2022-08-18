@@ -10,7 +10,7 @@ onClickOutside(el, () => {
 
 const isLoading = ref(false)
 const cancel = () => emits("update:open", !props.open)
-const confirm = async (ev: Event) => {
+const confirm = async () => {
   isLoading.value = true
   await props.confirmAction()
   isLoading.value = false
@@ -36,21 +36,23 @@ watch(
       class="fixed top-0 left-0 w-screen h-screen z-100 flex items-center justify-center bg-white bg-opacity-70"
     >
       <div ref="el" class="inner w-full max-w-112 bg-white rounded-xl shadow-2xl overflow-hidden">
-        <section class="px-6 mt-5 mb-2 text-[22px] font-semibold text-gray-800">
-          <slot name="header">Header</slot>
-        </section>
-        <section class="px-6 py-3 text-[15px]">
-          <slot>this is body</slot>
-        </section>
-        <section
-          class="px-6 py-4 bg-gray-50 flex justify-end space-x-2 transition"
-          :class="{ 'pointer-events-none opacity-50': isLoading }"
-        >
-          <slot name="footer" :cancel="cancel" :confirm="confirm" :loading="isLoading">
-            <button class="btn btn-danger">Cancel</button>
-            <button :data-loading="isLoading" class="btn btn-primary">Confirm</button>
-          </slot>
-        </section>
+        <FormKit type="form" :actions="false" @submit="confirm" messages-class="hidden">
+          <section class="px-6 mt-5 mb-2 text-[22px] font-semibold text-gray-800">
+            <slot name="header">Header</slot>
+          </section>
+          <section class="px-6 py-3 text-[15px]">
+            <slot>this is body</slot>
+          </section>
+          <section
+            class="px-6 py-4 bg-gray-50 flex justify-end space-x-2 transition modal-footer"
+            :class="{ 'pointer-events-none opacity-50': isLoading }"
+          >
+            <slot name="footer" :cancel="cancel" :confirm="confirm" :loading="isLoading">
+              <button class="btn btn-danger">Cancel</button>
+              <button :data-loading="isLoading" class="btn btn-primary">Confirm</button>
+            </slot>
+          </section>
+        </FormKit>
       </div>
     </div>
   </transition>

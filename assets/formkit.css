@@ -1,6 +1,9 @@
 .formkit-outer {
   @apply mb-5;
 }
+.modal-footer > .formkit-outer {
+  @apply m-0;
+}
 .formkit-label {
   @apply block mb-2 font-medium text-gray-400;
 }

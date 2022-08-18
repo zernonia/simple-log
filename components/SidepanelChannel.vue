@@ -46,14 +46,21 @@ const confirmCreate = async () => {
       <template #header>Create Channel</template>
 
       <div>
-        <FormKit v-model="newChannelName" label="Channel Name" type="text" :plugins="[castLowercaseHyphen]">
+        <FormKit
+          v-model="newChannelName"
+          label="Channel Name"
+          type="text"
+          validation="required"
+          :plugins="[castLowercaseHyphen]"
+          @keypress.enter.prevent=""
+        >
           <template #prefix><div class="i-ph-hash-bold text-lg mr-2"></div></template>
         </FormKit>
       </div>
 
-      <template #footer="{ cancel, confirm, loading }">
-        <button class="btn btn-secondary bg-gray-50" @click="cancel">Cancel</button>
-        <ButtonLoader class="btn btn-primary" @click="confirm" :loading="loading">Create Channel</ButtonLoader>
+      <template #footer="{ cancel, confirm }">
+        <button class="btn btn-secondary bg-gray-50" @click.prevent.stop="cancel">Cancel</button>
+        <FormKit type="submit" class="btn btn-primary">Create Channel</FormKit>
       </template>
     </Modal>
   </div>
