@@ -3,7 +3,7 @@ import { Events } from "~~/utils/interface"
 
 const { event: ev, events } = useEvents()
 const client = useSupabaseClient()
-const { data, pending, refresh } = useLazyAsyncData(
+const { pending, refresh } = useLazyAsyncData(
   "logs",
   async () => {
     const { data } = await client
@@ -11,16 +11,17 @@ const { data, pending, refresh } = useLazyAsyncData(
       .select("id, icon, name, description, created_at, integration, project_id, channel_id")
       .order("created_at", { ascending: false })
       .limit(50)
+    events.value = data
     return data
   },
   { server: false }
 )
-syncRef(events, data)
 onMounted(() => refresh())
 </script>
 
 <template>
-  <div class="bg-gray-50 min-h-screen py-12">
+  <div class="bg-gray-50 min-h-screen flex flex-col py-12">
+    <NavBarButton></NavBarButton>
     <div class="mx-auto w-max">
       <Loader v-if="pending && !events.length" />
       <div v-auto-animate>

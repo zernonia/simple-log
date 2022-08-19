@@ -9,6 +9,7 @@ const { currentChannelEvents, isPendingEvents } = useEvents()
     <template #header>
       <div class="flex w-full items-center justify-between">
         <div class="flex items-center">
+          <NavBarButton class="mr-4"></NavBarButton>
           <div class="i-ph-hash-bold mr-2"></div>
           {{ selectedChannel?.name }}
         </div>

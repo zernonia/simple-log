@@ -9,7 +9,7 @@ defineProps({
 
 <template>
   <div
-    class="py-6 px-6 mx-4 mb-6 flex flex-col w-132 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 ease-in-out"
+    class="py-6 px-6 mx-4 mb-6 flex flex-col w-full max-w-132 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 ease-in-out"
   >
     <div class="flex items-center justify-between">
       <div class="rounded-full bg-gray-50 w-9 h-9 flex items-center justify-center">
