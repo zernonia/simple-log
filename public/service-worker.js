@@ -1,3 +1,5 @@
+self.addEventListener("fetch", (e) => {})
+
 self.addEventListener("push", (event) => {
   let notification = event.data.json()
   self.registration.showNotification(notification.name, {
