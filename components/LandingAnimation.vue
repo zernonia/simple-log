@@ -54,7 +54,7 @@ watch(counter, () => {
 </script>
 
 <template>
-  <div class="relative h-80 mt-12 flex items-center justify-center w-full">
+  <div class="relative h-80 mt-20 lg:mt-12 flex items-center justify-center w-full transform scale-75 md:scale-100">
     <div>
       <button
         @click="counter = 1"
@@ -92,7 +92,7 @@ watch(counter, () => {
         <div class="z-10 relative">
           <transition appear name="fade">
             <LogCard
-              class="w-96 absolute -translate-y-40"
+              class="w-96 absolute -translate-x-65 -translate-y-80 lg:translate-x-0 lg:-translate-y-40"
               v-if="counter >= 1"
               :key="counter"
               :data="events[counter - 1]"
