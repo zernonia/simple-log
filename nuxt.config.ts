@@ -35,5 +35,10 @@ export default defineNuxtConfig({
     REDIS_PORT: process.env.REDIS_PORT,
     REDIS_USERNAME: process.env.REDIS_USERNAME,
     REDIS_PASSWORD: process.env.REDIS_PASSWORD,
+    VAPID_PRIVATE_KEY: process.env.VAPID_PRIVATE_KEY,
+    VAPID_SUBJECT: process.env.VAPID_SUBJECT,
+    public: {
+      VAPID_PUBLIC_KEY: process.env.VAPID_PUBLIC_KEY,
+    },
   },
 })

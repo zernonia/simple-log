@@ -20,6 +20,7 @@ export interface Users {
   full_name?: string
   avatar_url?: string
   meta?: any // type unknown;
+  sub?: any // type unknown;
 }
 
 export interface Events {
