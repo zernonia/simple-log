@@ -92,7 +92,7 @@ watch(counter, () => {
         <div class="z-10 relative">
           <transition appear name="fade">
             <LogCard
-              class="w-96 absolute -translate-x-65 -translate-y-80 lg:translate-x-0 lg:-translate-y-40"
+              class="!w-96 absolute -translate-x-65 -translate-y-80 lg:translate-x-0 lg:-translate-y-40"
               v-if="counter >= 1"
               :key="counter"
               :data="events[counter - 1]"

@@ -89,7 +89,7 @@ onClickOutside(el, () => {
       </div>
 
       <div
-        :class="[meta.sidePanel ? 'md:w-64  border-x ' : 'w-0  border-r']"
+        :class="[meta.sidePanel ? 'w-60 md:w-64  border-x ' : 'w-0  border-r']"
         class="flex flex-col flex-shrink-0 transition-width ease-in-out duration-500"
       >
         <transition name="fade">
