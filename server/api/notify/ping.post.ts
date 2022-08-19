@@ -10,18 +10,22 @@ export default defineEventHandler(async (event) => {
   const { data, error } = await client.from<Users>("users").select("*").eq("id", payload.record.owner_id)
 
   if (data) {
-    sendNotification(data, payload.record)
+    const result = await sendNotification(data, payload.record)
+    return {
+      result,
+    }
+  } else {
+    return "not ok"
   }
-  return "ok"
 })
 
-const sendNotification = (users: Users[], events: Events) => {
+const sendNotification = async (users: Users[], events: Events) => {
   const vapidDetails = {
     publicKey: process.env.VAPID_PUBLIC_KEY,
     privateKey: process.env.VAPID_PRIVATE_KEY,
     subject: process.env.VAPID_SUBJECT,
   }
-
+  const ids: string[] = []
   // Customize how the push service should attempt to deliver the push message.
   // And provide authentication information.
   const options = {
@@ -29,18 +33,18 @@ const sendNotification = (users: Users[], events: Events) => {
     vapidDetails: vapidDetails,
   }
   // Send a push message to each client specified in the subscriptions array.
-  users.forEach((user) => {
+  for await (let user of users) {
     const endpoint = user.sub.endpoint
     const id = endpoint.substr(endpoint.length - 8, endpoint.length)
-    webpush
-      .sendNotification(user.sub, JSON.stringify(events), options)
-      .then((result) => {
-        console.log(`Endpoint ID: ${id}`)
-        console.log(`Result: ${result.statusCode}`)
-      })
-      .catch((error) => {
-        console.log(`Endpoint ID: ${id}`)
-        console.log(`Error: ${error} `)
-      })
-  })
+    ids.push(id)
+    try {
+      const result = await webpush.sendNotification(user.sub, JSON.stringify(events), options)
+      console.log(`Endpoint ID: ${id}`)
+      console.log(`Result: ${result.statusCode}`)
+    } catch (error) {
+      console.log(`Endpoint ID: ${id}`)
+      console.log(`Error: ${error} `)
+    }
+  }
+  return ids
 }
