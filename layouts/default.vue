@@ -15,8 +15,8 @@
             Docs</NuxtLink
           >
           <NuxtLink class="hidden sm:flex btn-secondary bg-white" to="/">
-            <div class="i-uil-star text-xl mr-2"></div>
-            Features</NuxtLink
+            <div class="i-uil-layers text-xl mr-2"></div>
+            PWA</NuxtLink
           >
           <NuxtLink class="btn-primary px-4" to="/app/">
             <div class="i-uil-apps md:text-xl mr-2"></div>
