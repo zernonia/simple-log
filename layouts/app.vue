@@ -42,6 +42,15 @@ const el = ref()
 onClickOutside(el, () => {
   app.value.isNavBarShowing = false
 })
+
+onMounted(async () => {
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("/service-worker.js")
+      .then((res) => console.log("service worker registered"))
+      .catch((err) => console.log("service worker not registered", err))
+  }
+})
 </script>
 
 <template>
