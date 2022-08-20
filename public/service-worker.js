@@ -19,6 +19,8 @@ self.addEventListener("push", (event) => {
     icon: "https://emojicdn.elk.sh/" + notification.icon ?? "⚡️",
     body: notification.description,
     data: notification,
+    sound: "/notification.mp3",
+    badge: "/images/icons/icon-72x72.png",
   })
 })
 
