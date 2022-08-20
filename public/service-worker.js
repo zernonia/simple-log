@@ -1,3 +1,8 @@
+self.addEventListener("install", (event) => {
+  self.skipWaiting()
+  console.log("service worker has been installed")
+})
+
 self.addEventListener("fetch", function (event) {
   event.respondWith(
     (async function () {
