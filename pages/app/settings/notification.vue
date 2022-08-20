@@ -43,9 +43,9 @@ const subscribe = async () => {
   <ContentLayout show-nav-button>
     <template #header>Notifcation</template>
 
-    <div class="p-4 mt-6 mx-auto w-120" v-if="user">
+    <div class="max-w-120 px-3 mt-4 md:mt-12 w-full mx-auto" v-if="user">
       <div class="flex flex-col">
-        user is subscribe: {{ isUserSubscribed }}
+        <p>User device is subscribed: {{ isUserSubscribed }}</p>
         <button class="btn-primary" @click="subscribe">Notify</button>
       </div>
     </div>

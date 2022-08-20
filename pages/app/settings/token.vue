@@ -49,7 +49,7 @@ const createToken = async () => {
   <ContentLayout show-nav-button>
     <template #header>API</template>
 
-    <div class="max-w-120 mt-12 w-full mx-auto">
+    <div class="max-w-120 px-3 mt-4 md:mt-12 w-full mx-auto">
       <button class="btn-primary w-max" :disabled="isCreatingNewToken" @click="isCreatingNewToken = true">
         Create token
       </button>

@@ -43,7 +43,7 @@ const createIntegration = (type: "supabase") => {
   <ContentLayout show-nav-button>
     <template #header>Plugins</template>
 
-    <div class="max-w-120 mt-12 w-full mx-auto">
+    <div class="max-w-120 px-3 mt-4 md:mt-12 w-full mx-auto">
       <div class="flex space-x-4">
         <button
           class="w-32 h-32 border bg-transparent hover:bg-gray-100 transition rounded-xl p-3 flex flex-col justify-center items-center"

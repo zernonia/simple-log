@@ -7,7 +7,7 @@ const supabaseUser = useSupabaseUser()
   <ContentLayout show-nav-button>
     <template #header>Profile</template>
 
-    <div class="p-4 mt-6 mx-auto w-120" v-if="user">
+    <div class="px-3 mt-4 md:mt-12 mx-auto max-w-120 w-full" v-if="user">
       <img :src="user.avatar_url" :alt="user.full_name" class="w-32 h-32 rounded-full" />
 
       <div class="mt-6">
