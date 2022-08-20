@@ -70,9 +70,8 @@ const hlCode = await useShiki(code, { lang: "ts" })
 <template>
   <ContentLayout show-nav-button>
     <template #header>Playground</template>
-
-    <div class="mt-12 flex flex-col lg:flex-row max-w-screen-lg mx-auto">
-      <div class="w-full min-w-80 mr-8">
+    <div class="mt-4 px-3 md:mt-12 flex flex-col lg:flex-row max-w-screen-lg mx-auto">
+      <div class="md:min-w-80 md:mr-8">
         <FormKit type="form" @submit="submit">
           <FormKit
             validation="required"
@@ -130,12 +129,10 @@ const hlCode = await useShiki(code, { lang: "ts" })
         </FormKit>
       </div>
 
-      <div class="flex-shrink-0 bg-gray-50 rounded-xl flex flex-col items-center justify-center px-16 py-8">
-        <LogCard class="mt-12" :data="payloadForLogCard"></LogCard>
+      <div class="flex-shrink-0 bg-gray-50 rounded-xl flex flex-col items-center justify-center px-3 md:px-16 py-8">
+        <LogCard class="m-6 md:mt-12" :data="payloadForLogCard"></LogCard>
 
-        <div>
-          <div class="text-sm mt-12" v-html="hlCode"></div>
-        </div>
+        <div class="text-sm md:mt-12" v-html="hlCode"></div>
       </div>
     </div>
   </ContentLayout>
