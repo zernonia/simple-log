@@ -24,8 +24,8 @@ self.addEventListener("push", (event) => {
     icon: "https://emojicdn.elk.sh/" + notification.icon ?? "⚡️",
     body: notification.description,
     data: notification,
-    sound: "/notification.mp3",
-    badge: "/images/icons/icon-72x72.png",
+    sound: "https://simple-log.vercel.app/notification.mp3",
+    badge: "https://simple-log.vercel.app/images/icons/icon-72x72.png",
   })
 })
 
