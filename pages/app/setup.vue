@@ -2,6 +2,7 @@
 import { castLowercaseHyphen } from "~~/utils/formkit"
 
 const user = useSupabaseUser()
+const { refresh } = useProjects()
 
 const payload = ref({
   project: "",
@@ -14,6 +15,10 @@ const submit = async () => {
     body: { payload: payload.value },
     headers: useRequestHeaders(["cookie"]),
   })
+  await refresh()
+  if (data?.channelData?.length && data.projectData) {
+    navigateTo(`/app/${data.projectData.id}/${data.channelData[0].id}`)
+  }
 }
 </script>
 
