@@ -26,7 +26,14 @@ self.addEventListener("notificationclick", (event) => {
   event.notification.close()
   console.log(event.notification)
   const data = event.notification.data
-  event.waitUntil(
-    self.clients.openWindow(`https://simple-log.vercel.app/app/${data.project_id}/${data.channel_id}/${data.id}`)
-  )
+
+  const url = `https://simple-log.vercel.app/app/${data.project_id}/${data.channel_id}/${data.id}`
+
+  const client = self.clients?.[0]
+  if (client) {
+    client.focus()
+    event.waitUntil(client.navigate(url))
+  } else {
+    event.waitUntil(self.clients.openWindow(url))
+  }
 })

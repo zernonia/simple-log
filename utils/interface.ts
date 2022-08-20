@@ -20,8 +20,7 @@ export interface Users {
   full_name?: string
   avatar_url?: string
   meta?: any // type unknown;
-  sub?: any // type unknown;
-  vapid?: Vapid
+  vapid?: Vapid[]
 }
 
 export interface Events {
@@ -61,4 +60,13 @@ export interface Vapid {
   user_id: string /* primary key */
   auth: string
   subscription?: any // type unknown;
+}
+
+export interface VapidSubscription {
+  keys: {
+    auth: string
+    p256dh: string
+  }
+  endpoint: string
+  expirationTime?: any
 }
