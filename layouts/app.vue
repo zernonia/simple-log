@@ -97,6 +97,7 @@ onClickOutside(el, () => {
             <div v-if="name.toString().includes('app-settings')" class="flex flex-col">
               <h4 class="my-3 uppercase text-sm font-bold text-gray-400">Settings</h4>
 
+              <NuxtLink class="panel" to="/app/settings/notification">Notification</NuxtLink>
               <NuxtLink class="panel" to="/app/settings/profile">Profile </NuxtLink>
               <!-- <NuxtLink class="panel" to="/app/settings/billing">Billing </NuxtLink> -->
               <NuxtLink class="panel" to="/app/settings/token">Token </NuxtLink>

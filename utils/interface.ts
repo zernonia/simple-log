@@ -21,6 +21,7 @@ export interface Users {
   avatar_url?: string
   meta?: any // type unknown;
   sub?: any // type unknown;
+  vapid?: Vapid
 }
 
 export interface Events {
@@ -54,4 +55,10 @@ export interface Integrations {
   channel_name?: string
   owner_id?: string
   created_at?: string
+}
+
+export interface Vapid {
+  user_id: string /* primary key */
+  auth: string
+  subscription?: any // type unknown;
 }
