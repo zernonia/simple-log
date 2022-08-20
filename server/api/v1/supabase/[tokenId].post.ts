@@ -1,7 +1,8 @@
 import { serverSupabaseServiceRole } from "#supabase/server"
 import { redis } from "~~/utils/redis"
-import type { Integrations } from "~~/utils/interface"
+import type { Integrations, Vapid, Events } from "~~/utils/interface"
 import type { SupabasePayload } from "~~/utils/types/supabase"
+import { sendNotification } from "~~/utils/functions"
 
 export default defineEventHandler(async (event) => {
   try {
@@ -31,16 +32,26 @@ export default defineEventHandler(async (event) => {
     }
 
     const client = serverSupabaseServiceRole(event)
-    const { data, error } = await client.rpc("log_event", {
-      input_owner_id: tokenData.owner_id,
-      input_project: tokenData.project_name,
-      input_channel: tokenData.channel_name,
-      input_name: `${mapType(payload).name} record on ${payload.table}`,
-      input_description: mapType(payload).description,
-      input_icon: mapType(payload).icon,
-      input_notify: false,
-      input_integration: "supabase",
-    })
+
+    const [{ data, error }, { data: vapidData }] = await Promise.all([
+      client.rpc("log_event", {
+        input_owner_id: tokenData.owner_id,
+        input_project: tokenData.project_name,
+        input_channel: tokenData.channel_name,
+        input_name: `${mapType(payload).name} record on ${payload.table}`,
+        input_description: mapType(payload).description,
+        input_icon: mapType(payload).icon,
+        input_notify: false,
+        input_integration: "supabase",
+      }),
+      client.from<Vapid>("vapid").select("subscription").eq("user_id", tokenData.owner_id),
+    ])
+
+    if (vapidData?.length) {
+      const subscriptions = vapidData.map((i) => i.subscription)
+      const ids = await sendNotification(subscriptions, data as unknown as Events)
+      console.log({ data, vapidData, ids })
+    }
 
     return { data, error }
   } catch (err) {
