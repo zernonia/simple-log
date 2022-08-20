@@ -12,14 +12,17 @@ const { currentChannelEvents, isPendingEvents } = useEvents()
           <div class="i-ph-hash-bold mr-2"></div>
           {{ selectedChannel?.name }}
         </div>
-        <TextSearch></TextSearch>
+        <!-- <TextSearch></TextSearch> -->
       </div>
     </template>
-    <div class="bg-gray-50 sm:flex-grow">
+    <div class="bg-gray-50 flex-grow">
       <div class="sm:w-max mx-auto p-3 sm:p-4 mt-4 sm:mt-6">
         <Loader v-if="isPendingEvents" />
         <div v-auto-animate>
-          <div class="text-xl font-medium text-gray-400" v-if="!isPendingEvents && !currentChannelEvents?.length">
+          <div
+            class="text-xl text-center font-medium text-gray-400"
+            v-if="!isPendingEvents && !currentChannelEvents?.length"
+          >
             No events yet...
           </div>
           <div v-else class="relative" v-for="event in currentChannelEvents" :key="event.id">

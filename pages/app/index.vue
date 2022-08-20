@@ -20,9 +20,11 @@ onMounted(() => refresh())
 </script>
 
 <template>
-  <div class="bg-gray-50 min-h-screen flex flex-col py-12">
-    <NavBarButton></NavBarButton>
-    <div class="mx-auto w-max">
+  <div class="bg-gray-50 min-h-screen flex flex-col">
+    <div class="p-3">
+      <NavBarButton></NavBarButton>
+    </div>
+    <div class="sm:w-max mx-auto p-3 sm:p-4 sm:mt-6">
       <Loader v-if="pending && !events.length" />
       <div v-auto-animate>
         <div class="relative" v-for="event in events" :key="event.id">

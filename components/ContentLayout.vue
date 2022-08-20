@@ -16,7 +16,7 @@ defineProps({
       >
         <div class="i-uil-bars text-gray-800 text-xl"></div>
       </button>
-      <h3 class="text-lg font-semibold flex items-center">
+      <h3 class="md:text-lg font-semibold flex items-center">
         <slot name="header"></slot>
       </h3>
     </div>
