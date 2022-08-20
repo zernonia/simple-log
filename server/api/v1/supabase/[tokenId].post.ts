@@ -27,11 +27,8 @@ export default defineEventHandler(async (event) => {
           return {
             name: "Updated",
             icon: "💫",
-            description: JSON.stringify({
-              update:
-                "**Updated**\n" +
-                convertJSONToString(JSON.stringify(getDifference(payload.old_record, payload.record))),
-            }),
+            description:
+              "**Updated**\n" + convertJSONToString(JSON.stringify(getDifference(payload.old_record, payload.record))),
           }
         }
         case "DELETE": {
