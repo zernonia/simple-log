@@ -47,7 +47,7 @@ const updateToken = async () => {
     </template>
 
     <div class="flex-shrink-0">
-      <FormKit type="form" :actions="false" @submit="updateToken">
+      <FormKit type="form" submit-label="save" :actions="false" @submit="updateToken" #default="{ disabled }">
         <div
           class="flex items-end justify-between px-1 opacity-50 delay-300 focus-within:opacity-100 hover:opacity-100 transition"
         >
@@ -59,7 +59,7 @@ const updateToken = async () => {
             validation="required"
             :plugins="[castLowercaseHyphen]"
           />
-          <FormKit type="submit" label="Save" />
+          <FormKit :disabled="disabled" type="submit" label="Save" />
         </div>
       </FormKit>
 

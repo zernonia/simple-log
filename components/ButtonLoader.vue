@@ -5,7 +5,7 @@ defineProps({
 </script>
 
 <template>
-  <button :data-loading="loading" class="btn-loader" v-bind="$attrs">
+  <button :data-loading="loading" :disabled="loading" class="btn-loader" v-bind="$attrs">
     <slot></slot>
   </button>
 </template>
