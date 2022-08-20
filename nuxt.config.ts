@@ -12,6 +12,30 @@ export default defineNuxtConfig({
     // presets
     uno: true, // enabled `@unocss/preset-uno`
     icons: true, // enabled `@unocss/preset-icons`,
+    typography: {
+      cssExtend: {
+        h1: {
+          "font-weight": 700,
+        },
+        h2: {
+          "font-weight": 700,
+        },
+        h3: {
+          "font-weight": 700,
+        },
+        code: {
+          padding: "0.25rem 0.35rem",
+          background: "#f2f4f6 !important",
+          "border-radius": "0.25rem",
+        },
+        a: {
+          color: "#9ca3af",
+        },
+        "a:hover": {
+          color: "#202938",
+        },
+      },
+    },
     transformers: [transformerDirective({ enforce: "pre" })], // enabled `@unocss/transformer-directives`,
 
     // core options
@@ -28,6 +52,11 @@ export default defineNuxtConfig({
   nitro: {
     externals: {
       inline: ["@nuxtjs/supabase", "websocket"],
+    },
+  },
+  content: {
+    highlight: {
+      theme: "poimandres",
     },
   },
   runtimeConfig: {

@@ -22,6 +22,17 @@ export default defineEventHandler(async (event) => {
       name: payload.channel,
     })
 
+    await $fetch("/api/token/create", {
+      method: "POST",
+      body: {
+        payload: {
+          name: `${payload.project}-token`,
+          private: true,
+          owner_id: user.id,
+        },
+      },
+    })
+
     return {
       projectData,
       channelData,

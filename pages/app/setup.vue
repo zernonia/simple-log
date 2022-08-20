@@ -17,7 +17,7 @@ const submit = async () => {
   })
   await refresh()
   if (data?.channelData?.length && data.projectData) {
-    navigateTo(`/app/${data.projectData.id}/${data.channelData[0].id}`)
+    navigateTo("/app/settings/token")
   }
 }
 </script>

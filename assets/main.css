@@ -51,8 +51,22 @@ body {
 }
 
 .shiki {
-  @apply p-4 rounded-xl max-w-120 overflow-x-auto;
+  @apply p-4 rounded-xl overflow-x-auto;
 }
-pre code .line {
-  @apply inline min-h-none;
+
+.prose pre {
+  @apply bg-gray-900;
+}
+.prose img {
+  @apply mx-auto;
+}
+.prose h2 a {
+  @apply font-bold underline-transparent;
+}
+.prose pre code {
+  @apply !bg-transparent;
+}
+.prose :where(:not(pre) > code):not(:where(.not-prose, .not-prose *))::before,
+.prose :where(:not(pre) > code):not(:where(.not-prose, .not-prose *))::after {
+  content: "" !important;
 }
