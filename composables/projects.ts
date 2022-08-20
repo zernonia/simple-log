@@ -13,6 +13,7 @@ export const useProjects = () => {
     async () => {
       const { data } = await client.from<Projects>("projects").select("*, channels!project_id(*)")
       projects.value = data
+      if (!data?.length) navigateTo("/app/setup")
       return data
     },
     { server: false }

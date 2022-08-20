@@ -8,8 +8,14 @@ import { convertJSONToString } from "~~/utils/functions/convertJSONToString"
 export default defineEventHandler(async (event) => {
   try {
     const { tokenId } = getRouterParams(event)
+    const { notify = "true" } = useQuery(event)
     const payload = await useBody<SupabasePayload>(event)
     const tokenData = JSON.parse(await redis.get(`integrations-${tokenId}`)) as Integrations
+
+    if (!tokenData) {
+      const err = createError({ statusCode: 400, statusMessage: "No token available" })
+      sendError(event, err)
+    }
 
     const mapType = (payload: SupabasePayload) => {
       switch (payload.type) {
@@ -57,7 +63,7 @@ export default defineEventHandler(async (event) => {
       client.from<Vapid>("vapid").select("subscription").eq("user_id", tokenData.owner_id),
     ])
 
-    if (vapidData?.length) {
+    if (vapidData?.length && String(notify).toLowerCase() == "true") {
       const subscriptions = vapidData.map((i) => i.subscription)
       const ids = await sendNotification(subscriptions, data as unknown as Events)
       console.log({ data, vapidData, ids })

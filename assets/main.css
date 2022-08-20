@@ -1,6 +1,19 @@
 body {
   @apply text-gray-800;
 }
+::-webkit-scrollbar {
+  background: transparent;
+  @apply w-6px h-6px md:w-10px md:h-10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #dedede;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c2c1bf;
+}
+::-webkit-scrollbar-track {
+  background: #f8fafb;
+}
 
 .circle-panel {
   @apply rounded-full border-3 border-transparent w-12 h-12 flex justify-center items-center text-gray-800 hover:text-gray-400 transition duration-500;
@@ -35,4 +48,11 @@ body {
 .fade-leave-to .inner {
   opacity: 0;
   transform: scale(0);
+}
+
+.shiki {
+  @apply p-4 rounded-xl max-w-120 overflow-x-auto;
+}
+pre code .line {
+  @apply inline min-h-none;
 }

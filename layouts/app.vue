@@ -50,6 +50,8 @@ onMounted(async () => {
       .catch((err) => console.log("service worker not registered", err))
   }
 })
+
+useCustomHead("App")
 </script>
 
 <template>
@@ -79,7 +81,7 @@ onMounted(async () => {
           <NuxtLink to="/app/playground" class="circle-panel">
             <div class="i-uil-play text-xl"></div>
           </NuxtLink>
-          <NuxtLink to="/app/setup" class="circle-panel">
+          <NuxtLink v-if="!projects.length" to="/app/setup" class="circle-panel">
             <div class="i-uil-star text-xl"></div>
           </NuxtLink>
           <NuxtLink

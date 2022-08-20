@@ -6,12 +6,21 @@ import { sendNotification } from "~~/utils/functions/sendNotification"
 export default defineEventHandler(async (event) => {
   try {
     const { headers } = event.req
-    const { payload } = await useBody<{
-      payload: { project: string; channel: string; event: string; description: string; icon: string; notify: boolean }
+    const payload = await useBody<{
+      project: string
+      channel: string
+      event: string
+      description: string
+      icon: string
+      notify: boolean
     }>(event)
 
     const tokenId = headers.authorization.split("Bearer")[1].trim()
     const tokenData = JSON.parse(await redis.get(tokenId)) as Tokens
+    if (!tokenData) {
+      const err = createError({ statusCode: 400, statusMessage: "No token available" })
+      sendError(event, err)
+    }
 
     const client = serverSupabaseServiceRole(event)
     const [{ data, error }, { data: vapidData }] = await Promise.all([
