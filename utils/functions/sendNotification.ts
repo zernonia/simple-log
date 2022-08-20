@@ -1,4 +1,4 @@
-import type { Users, Events, VapidSubscription } from "./interface"
+import type { Users, Events, VapidSubscription } from "../interface"
 import webpush from "web-push"
 
 export const sendNotification = async (subscriptions: VapidSubscription[], events: Events) => {

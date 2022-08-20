@@ -1,5 +1,5 @@
 import { serverSupabaseServiceRole } from "#supabase/server"
-import { sendNotification } from "~~/utils/functions"
+import { sendNotification } from "~~/utils/functions/sendNotification"
 import { Users } from "~~/utils/interface"
 
 export default defineEventHandler(async (event) => {

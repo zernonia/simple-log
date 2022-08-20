@@ -2,7 +2,8 @@ import { serverSupabaseServiceRole } from "#supabase/server"
 import { redis } from "~~/utils/redis"
 import type { Integrations, Vapid, Events } from "~~/utils/interface"
 import type { SupabasePayload } from "~~/utils/types/supabase"
-import { sendNotification } from "~~/utils/functions"
+import { sendNotification } from "~~/utils/functions/sendNotification"
+import { convertJSONToString } from "~~/utils/functions/convertJSONToString"
 
 export default defineEventHandler(async (event) => {
   try {
@@ -13,7 +14,11 @@ export default defineEventHandler(async (event) => {
     const mapType = (payload: SupabasePayload) => {
       switch (payload.type) {
         case "INSERT": {
-          return { name: "New", icon: "✨", description: JSON.stringify({ new: payload.record }) }
+          return {
+            name: "New",
+            icon: "✨",
+            description: "**New**\n" + convertJSONToString(JSON.stringify(payload.record)),
+          }
         }
         case "UPDATE": {
           const getDifference = (a: any, b: any) =>
@@ -22,11 +27,19 @@ export default defineEventHandler(async (event) => {
           return {
             name: "Updated",
             icon: "💫",
-            description: JSON.stringify({ update: getDifference(payload.old_record, payload.record) }),
+            description: JSON.stringify({
+              update:
+                "**Updated**\n" +
+                convertJSONToString(JSON.stringify(getDifference(payload.old_record, payload.record))),
+            }),
           }
         }
         case "DELETE": {
-          return { name: "Deleted", icon: "🗑", description: JSON.stringify({ old: payload.old_record }) }
+          return {
+            name: "Deleted",
+            icon: "🗑",
+            description: "**Deleted**\n" + convertJSONToString(JSON.stringify(payload.old_record)),
+          }
         }
       }
     }

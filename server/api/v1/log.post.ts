@@ -1,7 +1,7 @@
 import { serverSupabaseServiceRole, serverSupabaseUser } from "#supabase/server"
 import { redis } from "~~/utils/redis"
 import type { Events, Tokens, Vapid } from "~~/utils/interface"
-import { sendNotification } from "~~/utils/functions"
+import { sendNotification } from "~~/utils/functions/sendNotification"
 
 export default defineEventHandler(async (event) => {
   try {
