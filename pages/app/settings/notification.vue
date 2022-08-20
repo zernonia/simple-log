@@ -40,7 +40,7 @@ const subscribe = async () => {
 </script>
 
 <template>
-  <ContentLayout>
+  <ContentLayout show-nav-button>
     <template #header>Notifcation</template>
 
     <div class="p-4 mt-6 mx-auto w-120" v-if="user">

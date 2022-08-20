@@ -46,7 +46,7 @@ const createToken = async () => {
 </script>
 
 <template>
-  <ContentLayout>
+  <ContentLayout show-nav-button>
     <template #header>API</template>
 
     <div class="max-w-120 mt-12 w-full mx-auto">

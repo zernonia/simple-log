@@ -32,7 +32,7 @@ const submit = async () => {
 </script>
 
 <template>
-  <ContentLayout>
+  <ContentLayout show-nav-button>
     <template #header>Playground</template>
 
     <div class="mt-12 flex flex-col lg:flex-row max-w-screen-lg mx-auto">

@@ -4,7 +4,7 @@ const supabaseUser = useSupabaseUser()
 </script>
 
 <template>
-  <ContentLayout>
+  <ContentLayout show-nav-button>
     <template #header>Profile</template>
 
     <div class="p-4 mt-6 mx-auto w-120" v-if="user">

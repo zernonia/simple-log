@@ -40,7 +40,7 @@ const createIntegration = (type: "supabase") => {
 </script>
 
 <template>
-  <ContentLayout>
+  <ContentLayout show-nav-button>
     <template #header>Plugins</template>
 
     <div class="max-w-120 mt-12 w-full mx-auto">
