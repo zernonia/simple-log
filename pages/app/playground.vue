@@ -59,7 +59,7 @@ var requestOptions = {
   body: payload,
 };
 
-fetch("https://simple-log.vercel.app/v1/log", requestOptions)
+fetch("https://simple-log.vercel.app/api/v1/log", requestOptions)
   .then(response => response.json())
   .catch(error => console.log('error', error));
 `
