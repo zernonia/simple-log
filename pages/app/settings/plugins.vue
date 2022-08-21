@@ -65,6 +65,16 @@ const createIntegration = (type: "supabase") => {
 
       <h3 class="mt-6 font-semibold text-lg">My Integrations</h3>
       <p class="text-sm text-gray-400">Tokens are required for publishing your events to SimpleLog</p>
+      <p class="text-sm text-gray-400">
+        <NuxtLink
+          class="underline underline-offset-2 hover:text-gray-800 transition"
+          target="_blank"
+          to="/docs/plugins/supabase"
+        >
+          Read here</NuxtLink
+        >
+        for documentation
+      </p>
 
       <Loader v-if="pending && !integrations"></Loader>
       <ul class="mt-8" v-else>
