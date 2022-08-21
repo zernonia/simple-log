@@ -25,5 +25,9 @@ watch(
       <div class="i-uil-github mr-2 text-xl"></div>
       Login with GitHub
     </ButtonLoader>
+
+    <p class="max-w-64 text-center text-gray-400 text-sm mt-8">
+      If you sign in here, I will receive notification in SimpleLog 😉
+    </p>
   </div>
 </template>
