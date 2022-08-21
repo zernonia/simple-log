@@ -20,13 +20,27 @@ self.addEventListener("fetch", function (event) {
 
 self.addEventListener("push", (event) => {
   let notification = event.data.json()
-  self.registration.showNotification(notification.name, {
-    icon: "https://emojicdn.elk.sh/" + notification.icon ?? "⚡️",
-    body: notification.description,
-    data: notification,
-    sound: "https://simple-log.vercel.app/notification.mp3",
-    badge: "https://simple-log.vercel.app/images/icons/icon-72x72.png",
+
+  const promises = []
+  clients.matchAll({ type: "window" }).then(function (clientList) {
+    for (var i = 0; i < clientList.length; i++) {
+      const state = clientList[i].visibilityState
+      // console.log({ client: clientList[i], state })
+      if (state === "hidden") {
+        promises.push(
+          self.registration.showNotification(notification.name, {
+            icon: "https://emojicdn.elk.sh/" + notification.icon ?? "⚡️",
+            body: notification.description,
+            data: notification,
+            sound: "https://simple-log.vercel.app/notification.mp3",
+            badge: "https://simple-log.vercel.app/images/icons/icon-72x72.png",
+          })
+        )
+      }
+    }
   })
+
+  event.waitUntil(Promise.all(promises))
 })
 
 self.addEventListener("notificationclick", (event) => {
