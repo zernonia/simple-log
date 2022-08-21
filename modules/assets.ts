@@ -11,7 +11,7 @@ export default defineNuxtModule({
       // Your custom code here
       console.log("bundler progress aaaaa")
       console.log(process.cwd())
-      await cp("assets/docs", ".vercel/output/functions/index.func/assets/docs", { recursive: true })
+      await cp("assets/docs", ".vercel/output/static/assets/docs", { recursive: true })
     })
   },
 })

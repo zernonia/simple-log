@@ -58,6 +58,7 @@ export default defineNuxtConfig({
     rules: [],
   },
   nitro: {
+    preset: "vercel",
     externals: {
       inline: ["@nuxtjs/supabase", "websocket"],
     },
