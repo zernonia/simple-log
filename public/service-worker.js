@@ -26,7 +26,9 @@ self.addEventListener("push", (event) => {
       const client = clientList[i]
       const state = client.visibilityState
 
-      if (state === "hidden") {
+      if (state === "visible") {
+        promises.push(client.postMessage(notification))
+      } else {
         promises.push(
           self.registration.showNotification(notification.name, {
             icon: "https://emojicdn.elk.sh/" + notification.icon ?? "⚡️",
@@ -36,8 +38,6 @@ self.addEventListener("push", (event) => {
             badge: "https://simple-log.vercel.app/images/icons/icon-72x72.png",
           })
         )
-      } else {
-        promises.push(client.postMessage(notification))
       }
     }
   })
