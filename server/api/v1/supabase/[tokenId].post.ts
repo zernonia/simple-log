@@ -23,25 +23,21 @@ export default defineEventHandler(async (event) => {
           return {
             name: "New",
             icon: "✨",
-            description: "**New**\n" + convertJSONToString(JSON.stringify(payload.record)),
+            description: "New\n" + convertJSONToString(JSON.stringify(payload.record)),
           }
         }
         case "UPDATE": {
-          const getDifference = (a: any, b: any) =>
-            Object.fromEntries(Object.entries(b).filter(([key, val]) => key in a && a[key] !== val))
-
           return {
             name: "Updated",
             icon: "💫",
-            description:
-              "**Updated**\n" + convertJSONToString(JSON.stringify(getDifference(payload.old_record, payload.record))),
+            description: "Updated\n" + convertJSONToString(JSON.stringify(payload.record)),
           }
         }
         case "DELETE": {
           return {
             name: "Deleted",
             icon: "🗑",
-            description: "**Deleted**\n" + convertJSONToString(JSON.stringify(payload.old_record)),
+            description: "Deleted\n" + convertJSONToString(JSON.stringify(payload.old_record)),
           }
         }
       }
