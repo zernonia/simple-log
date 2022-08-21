@@ -29,18 +29,20 @@ self.addEventListener("push", (event) => {
       if (state === "visible") {
         promises.push(client.postMessage(notification))
       } else {
-        promises.push(
-          self.registration.showNotification(notification.name, {
-            icon: "https://emojicdn.elk.sh/" + notification.icon ?? "⚡️",
-            body: notification.description,
-            data: notification,
-            sound: "https://simple-log.vercel.app/notification.mp3",
-            badge: "https://simple-log.vercel.app/images/icons/icon-72x72.png",
-          })
-        )
       }
     }
   })
+  if (!promises.length) {
+    promises.push(
+      self.registration.showNotification(notification.name, {
+        icon: "https://emojicdn.elk.sh/" + notification.icon ?? "⚡️",
+        body: notification.description,
+        data: notification,
+        sound: "https://simple-log.vercel.app/notification.mp3",
+        badge: "https://simple-log.vercel.app/images/icons/icon-72x72.png",
+      })
+    )
+  }
 
   event.waitUntil(Promise.all(promises))
 })
