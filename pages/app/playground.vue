@@ -112,6 +112,7 @@ const hlCode = await useShiki(code, { lang: "ts" })
             type="textarea"
             label="Description (optional)"
             name="description"
+            placeholder="Email: foo@bar.com"
             :rows="4"
             v-model="payload.description"
           />

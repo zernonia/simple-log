@@ -1,8 +1,12 @@
 <script setup lang="ts">
-import { convertJSONToString } from "~~/utils/functions/convertJSONToString"
 const props = defineProps({
   description: String,
 })
+
+const isUUID = (text: string) => {
+  const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi
+  return regexExp.test(text)
+}
 
 const isStringParsable = (text: string) => {
   try {
@@ -13,20 +17,32 @@ const isStringParsable = (text: string) => {
   }
   return true
 }
+
+const isKeyValue = (text: string) => {}
+
+const parsedDescription = computed(() => {
+  if (!props.description) return []
+  let textArray: string[] | [string, unknown][] = []
+  if (isStringParsable(props.description)) {
+    textArray = Object.entries(JSON.parse(props.description))
+  } else {
+    textArray = props.description.split("\n")
+  }
+  //todo: parse md, date, email, uuid
+  console.log(textArray)
+  return textArray
+})
 </script>
 
 <template>
   <div>
-    <div v-if="isStringParsable(description)" class="p-4 rounded-xl bg-gray-50 overflow-y-auto">
-      <!-- {{ convertJSONToString(description) }} -->
-      <p v-for="(value, key) in JSON.parse(description)">
-        {{ key }}:  
-        <p class="ml-4" v-if="typeof value === 'object'" v-for="(child_value, child_key) in value">
-          {{ child_key }}: {{ child_value }}
-        </p>
-        <span v-else>{{ value }}</span>
-      </p>
+    <div v-for="item in parsedDescription">
+      <div class="flex" v-if="Array.isArray(item)">
+        {{ item.map((i) => JSON.stringify(i).replaceAll(`"`, "")).join(": ") }}
+      </div>
+      <div v-else>
+        {{ item }}
+      </div>
     </div>
-    <div v-else class="whitespace-pre-wrap">{{ description }}</div>
   </div>
 </template>
