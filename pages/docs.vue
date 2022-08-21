@@ -25,7 +25,7 @@ const pluginQuery = await queryContent("docs", "plugins").find()
           :to="link._path"
         >
           <div :class="link.icon" class="mr-4 text-4xl"></div>
-          <p>{{ link.title }}</p>
+          <p>{{ link.slug }}</p>
         </NuxtLink>
       </div>
     </nav>
