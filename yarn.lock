@@ -2132,6 +2132,11 @@ decode-named-character-reference@^1.0.0:
   dependencies:
     character-entities "^2.0.0"
 
+dedent@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/dedent/-/dedent-0.7.0.tgz#2495ddbaf6eb874abb0e1be9df22d2e5a544326c"
+  integrity sha512-Q6fKUPqnAHAyhiUgFU7BUzLiv0kd8saH9al7tnu5Q/okj6dnupxyTgFIBjVzJATdfIAm9NAsvXNzjaKa+bxVyA==
+
 deepmerge@^4.2.2:
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-4.2.2.tgz#44d2ea3679b8f4d4ffba33f03d865fc1e7bf4955"
@@ -4397,6 +4402,11 @@ npmlog@^5.0.1:
     gauge "^3.0.0"
     set-blocking "^2.0.0"
 
+nprogress@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/nprogress/-/nprogress-0.2.0.tgz#cb8f34c53213d895723fcbab907e9422adbcafb1"
+  integrity sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==
+
 nth-check@^2.0.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/nth-check/-/nth-check-2.1.1.tgz#c9eab428effce36cd6b92c924bdb000ef1f1ed1d"
@@ -4410,6 +4420,16 @@ nuxi@3.0.0-rc.8:
   integrity sha512-2zAuRQnTUFPvway0sNinuQ9x4h+cDrOaWRCRCHYOZq1uSqco5G0wSiI/TzDsQfSMZjCU44wVAzSMJceTozoggQ==
   optionalDependencies:
     fsevents "~2.3.2"
+
+nuxt-progress@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/nuxt-progress/-/nuxt-progress-0.1.6.tgz#099d64aa9abdd89df26956c81457f1593fc8fd10"
+  integrity sha512-F/pxy52Oi3QXGhN11UjLmXn/Gig68oH9Gn0YnldpSqyu0tzJx65cixdaYkpFBLbHP7pvgIcwqdsLP0UkwmZMQQ==
+  dependencies:
+    "@nuxt/kit" "^3.0.0-rc.3"
+    dedent "^0.7.0"
+    defu "^6.0.0"
+    nprogress "^0.2.0"
 
 nuxt@3.0.0-rc.8:
   version "3.0.0-rc.8"

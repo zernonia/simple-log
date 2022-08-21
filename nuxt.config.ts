@@ -3,7 +3,15 @@ import transformerDirective from "@unocss/transformer-directives"
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  modules: ["@unocss/nuxt", "@nuxtjs/supabase", "@vueuse/nuxt", "@formkit/nuxt", "@nuxt/content"],
+  modules: [
+    "@unocss/nuxt",
+    "@nuxtjs/supabase",
+    "nuxt-progress",
+    "@vueuse/nuxt",
+    "@formkit/nuxt",
+    "@nuxt/content",
+    "~~/modules/assets",
+  ],
   css: ["@unocss/reset/tailwind.css", "~~/assets/formkit.css", "~~/assets/main.css"],
   formkit: {
     configFile: "./formkit.config.ts",
@@ -52,6 +60,13 @@ export default defineNuxtConfig({
   nitro: {
     externals: {
       inline: ["@nuxtjs/supabase", "websocket"],
+    },
+  },
+  progress: {
+    height: "5px",
+    color: "#9ca3af",
+    options: {
+      showSpinner: true,
     },
   },
   content: {
