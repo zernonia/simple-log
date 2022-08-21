@@ -19,7 +19,7 @@ useCustomHead("Home")
           all in 1 place
         </h1>
         <h2 class="mt-2 md:text-xl text-center text-gray-500">
-          Checking events notification should be easy and simple
+          Organize your events neatly in channels. Simple & Easy
         </h2>
 
         <NuxtLink class="btn-primary mt-6 md:mt-12 md:text-xl px-4" to="/app/">Try now</NuxtLink>
