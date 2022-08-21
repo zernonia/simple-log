@@ -20,12 +20,12 @@ self.addEventListener("fetch", function (event) {
 
 self.addEventListener("push", (event) => {
   let notification = event.data.json()
-
   const promises = []
   clients.matchAll({ type: "window" }).then(function (clientList) {
     for (var i = 0; i < clientList.length; i++) {
-      const state = clientList[i].visibilityState
-      // console.log({ client: clientList[i], state })
+      const client = clientList[i]
+      const state = client.visibilityState
+
       if (state === "hidden") {
         promises.push(
           self.registration.showNotification(notification.name, {
@@ -36,6 +36,8 @@ self.addEventListener("push", (event) => {
             badge: "https://simple-log.vercel.app/images/icons/icon-72x72.png",
           })
         )
+      } else {
+        promises.push(client.postMessage(notification))
       }
     }
   })
