@@ -9,7 +9,7 @@ Just follow these few simple steps to start.
 
 ## Create Integration
 
-Navigate to [Plugin](http://localhost:3000/app/settings/plugins) page in the app, and you will be welcomed with Supabase integration immediately.
+Navigate to [Plugin](/app/settings/plugins) page in the app, and you will be welcomed with Supabase integration immediately.
 
 ![SimpleLog plugin page](/assets/docs/supabase/pic1.png)
 
