@@ -17,7 +17,7 @@ const confirmDelete = async () => {
 </script>
 
 <template>
-  <div class="flex items-center justify-between border rounded-lg p-4 mb-4 bg-gray-50">
+  <div class="flex items-center justify-between bg-gray-100 rounded-lg p-4 mb-4">
     <p class="font-medium"># {{ channel.name }}</p>
 
     <div>

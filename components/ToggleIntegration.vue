@@ -66,7 +66,7 @@ const updateToken = async () => {
       <div class="flex items-center">
         <div class="i-logos-supabase-icon flex-shrink-0 text-4xl mr-4"></div>
         <div class="text-left">
-          <h5 class="text-lg font-medium">{{ integration.name }}</h5>
+          <h5 class="md:text-lg font-medium">{{ integration.name }}</h5>
           <p class="text-xs text-gray-400" v-if="integration.created_at">
             Created on {{ new Date(integration.created_at).toLocaleDateString() }}
           </p>

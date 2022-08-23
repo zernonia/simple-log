@@ -41,7 +41,7 @@ const updateToken = async () => {
   <Toggle v-bind="$attrs" class="mb-4">
     <template #label>
       <div class="text-left">
-        <h5 class="text-lg font-medium">{{ token.name }}</h5>
+        <h5 class="md:text-lg font-medium">{{ token.name }}</h5>
         <p class="text-xs text-gray-400">Created on {{ new Date(token.created_at).toLocaleDateString() }}</p>
       </div>
     </template>

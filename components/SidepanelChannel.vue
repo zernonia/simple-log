@@ -21,7 +21,7 @@ const confirmCreate = async () => {
 <template>
   <div class="w-55">
     <div class="pb-3 flex items-center justify-between group">
-      <h2 class="text-xl font-semibold">{{ selectedProject.name }}</h2>
+      <h2 class="tex-lg md:text-xl font-semibold">{{ selectedProject.name }}</h2>
       <NuxtLink :to="`/app/${params.projectId}/settings`"><div class="i-uil-cog text-lg transition"></div></NuxtLink>
     </div>
     <div class="my-3 flex justify-between">

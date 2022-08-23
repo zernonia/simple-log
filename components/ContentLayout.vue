@@ -7,8 +7,8 @@ defineProps({
 </script>
 
 <template>
-  <div class="flex flex-col min-h-screen">
-    <div class="sticky top-0 bg-white p-3 md:p-4 z-10 border-b flex items-center">
+  <div class="flex flex-col min-h-screen bg-white">
+    <div class="sticky bg-white bg-opacity-70 backdrop-filter backdrop-blur-md top-0 p-3 md:p-4 z-10 flex items-center">
       <button
         v-if="showNavButton"
         @click="app.isNavBarShowing = true"

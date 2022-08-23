@@ -20,7 +20,7 @@ onMounted(() => refresh())
 </script>
 
 <template>
-  <div class="bg-gray-50 min-h-screen flex flex-col">
+  <div class="bg-white min-h-screen flex flex-col">
     <div class="p-3">
       <NavBarButton></NavBarButton>
     </div>

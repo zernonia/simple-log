@@ -3,31 +3,33 @@ body {
 }
 ::-webkit-scrollbar {
   background: transparent;
-  @apply w-6px h-6px md:w-10px md:h-10px;
+  @apply w-6px h-6px md:w-8px md:h-10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #dedede;
+  background: #e4e7eb;
+  @apply rounded-xl;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #c2c1bf;
 }
 ::-webkit-scrollbar-track {
-  background: #f8fafb;
+  background: white;
+  @apply rounded-xl;
 }
 
 .circle-panel {
-  @apply rounded-full border-3 border-transparent w-12 h-12 flex justify-center items-center text-gray-800 hover:text-gray-400 transition duration-500;
+  @apply rounded-full border-transparent w-12 h-12 border-0 flex justify-center items-center text-gray-400 hover:text-gray-800 hover:bg-white transition-all duration-500;
 }
 .router-link-exact-active.circle-panel,
 .circle-panel-active {
-  @apply border-gray-200 !text-gray-400;
+  @apply border-gray-200 text-gray-800 border-3 border-gray-800 bg-white;
 }
 
 .panel {
-  @apply flex items-center px-3 py-1.5 font-medium rounded-lg bg-transparent text-gray-800 hover:text-gray-400 transition duration-500;
+  @apply flex items-center px-3 py-1.5 text-sm md:text-base font-medium rounded-lg bg-transparent text-gray-400 hover:text-gray-800 transition duration-500;
 }
 .router-link-active.panel {
-  @apply bg-gray-100 !text-gray-400;
+  @apply bg-gray-200 text-gray-800;
 }
 
 .fade-enter-active,

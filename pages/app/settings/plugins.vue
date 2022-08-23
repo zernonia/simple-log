@@ -46,7 +46,7 @@ const createIntegration = (type: "supabase") => {
     <div class="max-w-120 px-3 mt-4 md:mt-12 w-full mx-auto">
       <div class="flex space-x-4">
         <button
-          class="w-32 h-32 border bg-transparent hover:bg-gray-100 transition rounded-xl p-3 flex flex-col justify-center items-center"
+          class="w-32 h-32 shadow bg-transparent hover:bg-gray-100 transition rounded-xl p-3 flex flex-col justify-center items-center"
           @click="createIntegration('supabase')"
         >
           <div class="i-logos-supabase-icon text-5xl mb-4"></div>
@@ -54,7 +54,7 @@ const createIntegration = (type: "supabase") => {
         </button>
 
         <NuxtLink
-          class="w-32 h-32 text-center text-gray-300 border bg-transparent hover:bg-gray-100 hover:text-gray-800 transition rounded-xl p-3 flex flex-col justify-center items-center"
+          class="w-32 h-32 text-center text-gray-300 shadow bg-transparent hover:bg-gray-100 hover:text-gray-800 transition rounded-xl p-3 flex flex-col justify-center items-center"
           to="https://github.com/zernonia/simple-log/issues"
           target="_blank"
         >

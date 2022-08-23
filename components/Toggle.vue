@@ -18,7 +18,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="bg-gray-50 border rounded-xl flex flex-col w-full overflow-hidden">
+  <div class="bg-gray-100 rounded-xl flex flex-col w-full overflow-hidden">
     <button class="px-4 py-3 flex justify-between items-center" @click="isToggleOpen = !isToggleOpen">
       <slot name="label"></slot>
 
@@ -26,7 +26,7 @@ onMounted(() => {
     </button>
 
     <div
-      class="px-4 bg-white transition-all duration-500 ease-in-out overflow-hidden"
+      class="px-4 bg-gray-50 transition-all duration-500 ease-in-out overflow-hidden"
       :style="[isToggleOpen ? `max-height: ${height}px` : 'max-height: 0px']"
     >
       <div ref="el" class="py-3">

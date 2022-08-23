@@ -59,13 +59,13 @@ useCustomHead("App")
 </script>
 
 <template>
-  <div class="h-screen w-screen overflow-hidden flex">
+  <div class="h-screen w-screen overflow-hidden flex p-4 bg-gray-50">
     <div
       ref="el"
-      :class="[app.isNavBarShowing ? 'translate-x-0' : '-translate-x-full']"
-      class="absolute md:static !md:translate-x-0 h-full z-100 bg-white transition flex duration-300 ease-in-out"
+      :class="[app.isNavBarShowing ? '-translate-x-1rem' : '-translate-x-[120%]']"
+      class="bg-gray-50 absolute md:static !md:translate-x-0 h-full z-100 transition flex duration-300 ease-in-out"
     >
-      <div class="p-2 py-3 md:p-3 md:w-18 flex flex-col justify-between flex-shrink-0">
+      <div class="p-2 py-0 md:p-3 md:w-18 flex flex-col justify-between flex-shrink-0">
         <div class="flex flex-col space-y-2">
           <NuxtLink to="/app/" class="circle-panel">
             <!-- <div class="i-uil-box text-xl"></div> -->
@@ -103,11 +103,11 @@ useCustomHead("App")
       </div>
 
       <div
-        :class="[meta.sidePanel ? 'w-60 md:w-64  border-x ' : 'w-0  border-r']"
+        :class="[meta.sidePanel ? 'w-60 md:w-64' : 'w-0']"
         class="flex flex-col flex-shrink-0 transition-width ease-in-out duration-500"
       >
         <transition name="fade">
-          <div class="p-2 py-4 md:p-4 overflow-hidden" v-if="meta.sidePanel">
+          <div class="p-2 py-0 md:p-4 overflow-hidden" v-if="meta.sidePanel">
             <div v-if="name.toString().includes('app-settings')" class="flex flex-col">
               <h4 class="my-3 uppercase text-sm font-bold text-gray-400">Settings</h4>
 
@@ -125,7 +125,7 @@ useCustomHead("App")
     </div>
     <div
       :class="[app.isNavBarShowing ? 'opacity-50 pointer-events-none' : 'opacity-100']"
-      class="w-full flex-grow overflow-y-auto overflow-x-hidden transition ease-in-out"
+      class="w-full flex-grow overflow-y-auto overflow-x-hidden transition ease-in-out rounded-3xl md:shadow-xl shadow-gray-200"
     >
       <slot></slot>
     </div>

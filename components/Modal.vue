@@ -37,10 +37,10 @@ watch(
     >
       <div ref="el" class="inner w-full mx-4 max-w-112 bg-white rounded-xl shadow-2xl overflow-hidden">
         <FormKit type="form" :actions="false" @submit="confirm" messages-class="hidden">
-          <section class="px-6 mt-5 mb-2 text-[22px] font-semibold text-gray-800">
+          <section class="px-6 mt-5 mb-2 text-base md:text-[22px] font-semibold text-gray-800">
             <slot name="header">Header</slot>
           </section>
-          <section class="px-6 py-3 text-[15px]">
+          <section class="px-6 py-3 text-sm md:text-[15px]">
             <slot>this is body</slot>
           </section>
           <section
