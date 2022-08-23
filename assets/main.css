@@ -22,14 +22,14 @@ body {
 }
 .router-link-exact-active.circle-panel,
 .circle-panel-active {
-  @apply border-gray-200 text-gray-800 border-3 border-gray-800 bg-white;
+  @apply text-gray-800 border-3 border-gray-800 bg-white;
 }
 
 .panel {
   @apply flex items-center px-3 py-1.5 text-sm md:text-base font-medium rounded-lg bg-transparent text-gray-400 hover:text-gray-800 transition duration-500;
 }
 .router-link-active.panel {
-  @apply bg-gray-200 text-gray-800;
+  @apply bg-gray-100 text-gray-800;
 }
 
 .fade-enter-active,
