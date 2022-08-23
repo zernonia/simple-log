@@ -12,11 +12,11 @@ defineProps({
       <button
         v-if="showNavButton"
         @click="app.isNavBarShowing = true"
-        class="flex items-center justify-center md:hidden mr-4"
+        class="flex-shrink-0 flex items-center justify-center md:hidden mr-4"
       >
         <div class="i-uil-bars text-gray-800 text-xl"></div>
       </button>
-      <h3 class="md:text-lg font-semibold flex items-center">
+      <h3 class="md:text-lg font-semibold flex-grow flex items-center">
         <slot name="header"></slot>
       </h3>
     </div>

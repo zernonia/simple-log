@@ -29,7 +29,7 @@ const parsedDescription = computed(() => {
     textArray = props.description.split("\n")
   }
   //todo: parse md, date, email, uuid
-  console.log(textArray)
+  // console.log(textArray)
   return textArray
 })
 </script>
