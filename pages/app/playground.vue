@@ -130,7 +130,7 @@ const hlCode = await useShiki(code, { lang: "ts" })
         </FormKit>
       </div>
 
-      <div class="flex-shrink-0 bg-gray-50 rounded-xl flex flex-col items-center justify-center px-3 md:px-16 py-8">
+      <div class="flex-shrink-0 rounded-xl flex flex-col items-center justify-center px-3 md:px-16 py-8">
         <LogCard class="m-6 md:mt-12" :data="payloadForLogCard"></LogCard>
 
         <div class="md:mt-12 prose hlCode" v-html="hlCode"></div>

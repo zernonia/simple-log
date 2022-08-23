@@ -50,11 +50,11 @@ const createIntegration = (type: "supabase") => {
           @click="createIntegration('supabase')"
         >
           <div class="i-logos-supabase-icon text-5xl mb-4"></div>
-          <p class="font-medium">Supabase</p>
+          <p class="font-semibold">Supabase</p>
         </button>
 
         <NuxtLink
-          class="w-32 h-32 text-center text-gray-300 shadow bg-transparent hover:bg-gray-100 hover:text-gray-800 transition rounded-xl p-3 flex flex-col justify-center items-center"
+          class="w-32 h-32 text-center text-gray-400 shadow bg-transparent hover:bg-gray-100 hover:text-gray-800 transition rounded-xl p-3 flex flex-col justify-center items-center"
           to="https://github.com/zernonia/simple-log/issues"
           target="_blank"
         >

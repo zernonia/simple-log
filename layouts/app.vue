@@ -59,11 +59,11 @@ useCustomHead("App")
 </script>
 
 <template>
-  <div class="h-screen w-screen overflow-hidden flex p-4 bg-gray-50">
+  <div class="h-screen w-screen overflow-hidden flex p-4 bg-gray-100">
     <div
       ref="el"
       :class="[app.isNavBarShowing ? '-translate-x-1rem' : '-translate-x-[120%]']"
-      class="bg-gray-50 md:bg-transparent absolute md:static !md:translate-x-0 h-full z-100 transition flex duration-300 ease-in-out"
+      class="bg-gray-100 md:bg-transparent absolute md:static !md:translate-x-0 h-full z-100 transition flex duration-300 ease-in-out"
     >
       <div class="p-2 py-0 md:p-3 md:w-18 flex flex-col justify-between flex-shrink-0">
         <div class="flex flex-col space-y-2">
