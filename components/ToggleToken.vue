@@ -66,7 +66,7 @@ const updateToken = async () => {
       <div class="mt-1 mx-1 flex justify-between items-center">
         <button class="btn-secondary text-sm" @click="copy(token.id)">
           <div class="i-uil-clipboard text-base mr-2"></div>
-          Copy token
+          {{ copied ? "Copied" : "Copy token" }}
         </button>
 
         <button

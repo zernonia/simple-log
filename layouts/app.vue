@@ -36,11 +36,14 @@ onUnmounted(() => {
   subscribeEvent.unsubscribe()
 })
 
-const app = useAppSettings()
-const el = ref()
+const { settings, paginationBus } = useAppSettings()
+const el = ref<HTMLElement>()
 onClickOutside(el, () => {
-  app.value.isNavBarShowing = false
+  settings.value.isNavBarShowing = false
 })
+
+const elContent = ref<HTMLElement>()
+useInfiniteScroll(elContent, () => paginationBus.emit("fetch"), { distance: 30 })
 
 onMounted(async () => {
   if ("serviceWorker" in navigator) {
@@ -62,7 +65,7 @@ useCustomHead("App")
   <div class="h-screen w-screen overflow-hidden flex p-4 bg-gray-100">
     <div
       ref="el"
-      :class="[app.isNavBarShowing ? '-translate-x-1rem' : '-translate-x-[120%]']"
+      :class="[settings.isNavBarShowing ? '-translate-x-1rem' : '-translate-x-[120%]']"
       class="bg-gray-100 md:bg-transparent absolute md:static !md:translate-x-0 h-full z-100 transition flex duration-300 ease-in-out"
     >
       <div class="p-2 py-0 md:p-3 md:w-18 flex flex-col justify-between flex-shrink-0">
@@ -124,8 +127,9 @@ useCustomHead("App")
       </div>
     </div>
     <div
-      :class="[app.isNavBarShowing ? 'opacity-50 pointer-events-none' : 'opacity-100']"
-      class="w-full flex-grow overflow-y-auto overflow-x-hidden transition ease-in-out rounded-3xl bg-white md:shadow-xl shadow-gray-200"
+      ref="elContent"
+      :class="[settings.isNavBarShowing ? 'opacity-50 pointer-events-none' : 'opacity-100']"
+      class="content w-full h-full overflow-y-auto overflow-x-hidden transition ease-in-out rounded-3xl bg-white md:shadow-xl shadow-gray-200"
     >
       <slot></slot>
     </div>

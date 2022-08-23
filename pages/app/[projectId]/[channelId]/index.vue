@@ -36,7 +36,7 @@ const isListView = useLocalStorage("is-list-view", true)
         <!-- <TextSearch></TextSearch> -->
       </div>
     </template>
-    <div class="bg-white flex-grow">
+    <div class="flex-grow">
       <div class="sm:w-max mx-auto p-3 sm:p-4 mt-4 sm:mt-6">
         <Loader v-if="isPendingEvents" />
         <div v-auto-animate>

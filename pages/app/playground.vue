@@ -133,14 +133,14 @@ const hlCode = await useShiki(code, { lang: "ts" })
       <div class="flex-shrink-0 rounded-xl flex flex-col items-center justify-center px-3 md:px-16 py-8">
         <LogCard class="m-6 md:mt-12" :data="payloadForLogCard"></LogCard>
 
-        <div class="md:mt-12 prose hlCode" v-html="hlCode"></div>
+        <div class="md:mt-12 prose hlCode overflow-x-auto w-full md:max-w-120" v-html="hlCode"></div>
       </div>
     </div>
   </ContentLayout>
 </template>
 
-<style>
+<style lang="postcss">
 .hlCode pre code .line {
-  display: inline;
+  @apply inline;
 }
 </style>
