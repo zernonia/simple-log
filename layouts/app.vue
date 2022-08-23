@@ -63,7 +63,7 @@ useCustomHead("App")
     <div
       ref="el"
       :class="[app.isNavBarShowing ? '-translate-x-1rem' : '-translate-x-[120%]']"
-      class="bg-gray-50 absolute md:static !md:translate-x-0 h-full z-100 transition flex duration-300 ease-in-out"
+      class="bg-gray-50 md:bg-transparent absolute md:static !md:translate-x-0 h-full z-100 transition flex duration-300 ease-in-out"
     >
       <div class="p-2 py-0 md:p-3 md:w-18 flex flex-col justify-between flex-shrink-0">
         <div class="flex flex-col space-y-2">
@@ -125,7 +125,7 @@ useCustomHead("App")
     </div>
     <div
       :class="[app.isNavBarShowing ? 'opacity-50 pointer-events-none' : 'opacity-100']"
-      class="w-full flex-grow overflow-y-auto overflow-x-hidden transition ease-in-out rounded-3xl md:shadow-xl shadow-gray-200"
+      class="w-full flex-grow overflow-y-auto overflow-x-hidden transition ease-in-out rounded-3xl bg-white md:shadow-xl shadow-gray-200"
     >
       <slot></slot>
     </div>
