@@ -73,7 +73,7 @@ useCustomHead("App")
           </NuxtLink>
           <NuxtLink
             v-for="project in projects"
-            :to="`/app/${project.id}/${project.channels?.[0].id}`"
+            :to="`/app/${project?.id}/${project.channels?.[0]?.id}`"
             class="circle-panel"
             :class="{ 'circle-panel-active': name.toString().includes('app-projectId') }"
           >
