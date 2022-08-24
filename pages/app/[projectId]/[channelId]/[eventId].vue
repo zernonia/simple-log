@@ -12,7 +12,7 @@ const { back } = useRouter()
       </div>
     </template>
 
-    <div class="bg-gray-50 flex-grow">
+    <div>
       <div class="sm:w-max mx-auto p-3 sm:p-4 mt-4 sm:mt-6">
         <Loader v-if="!event" />
         <div v-else>

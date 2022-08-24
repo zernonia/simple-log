@@ -127,20 +127,33 @@ const hlCode = await useShiki(code, { lang: "ts" })
               <CheckPicker v-model="payload.notify"></CheckPicker>
             </div>
           </div>
+
+          <div class="flex mb-2">
+            <p class="text-sm text-gray-400">Not sure how to set up?</p>
+            <p class="text-sm text-gray-400 ml-2">
+              <NuxtLink
+                class="underline underline-offset-2 hover:text-gray-800 transition"
+                target="_blank"
+                to="/docs/getting-started"
+              >
+                Read here</NuxtLink
+              >
+            </p>
+          </div>
         </FormKit>
       </div>
 
-      <div class="flex-shrink-0 bg-gray-50 rounded-xl flex flex-col items-center justify-center px-3 md:px-16 py-8">
+      <div class="flex-shrink-0 rounded-xl flex flex-col items-center justify-center px-3 md:px-16 py-8">
         <LogCard class="m-6 md:mt-12" :data="payloadForLogCard"></LogCard>
 
-        <div class="md:mt-12 prose hlCode" v-html="hlCode"></div>
+        <div class="md:mt-12 prose hlCode overflow-x-auto w-full md:max-w-120" v-html="hlCode"></div>
       </div>
     </div>
   </ContentLayout>
 </template>
 
-<style>
+<style lang="postcss">
 .hlCode pre code .line {
-  display: inline;
+  @apply inline;
 }
 </style>

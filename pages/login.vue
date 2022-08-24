@@ -15,6 +15,18 @@ watch(
   },
   { immediate: true }
 )
+
+const { hash } = toRefs(useRoute())
+watch(
+  hash,
+  (n) => {
+    if (n)
+      nextTick(() => {
+        isLoading.value = true
+      })
+  },
+  { immediate: true }
+)
 </script>
 
 <template>

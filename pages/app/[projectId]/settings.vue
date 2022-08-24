@@ -15,7 +15,7 @@ const client = useSupabaseClient()
     </template>
 
     <Loader v-if="!selectedProject"></Loader>
-    <div v-else class="max-w-120 mt-12 w-full mx-auto">
+    <div v-else class="max-w-120 mt-12 w-full mx-auto p-4">
       <h3 class="formkit-label">Project Name</h3>
       <p>{{ selectedProject.name }}</p>
 

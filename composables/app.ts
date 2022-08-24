@@ -1,5 +1,12 @@
 export const useAppSettings = () => {
-  return useState("app-settings", () => ({
+  const settings = useState("app-settings", () => ({
     isNavBarShowing: false,
   }))
+
+  const paginationBus = useEventBus<string>("pagination")
+
+  return {
+    settings,
+    paginationBus,
+  }
 }

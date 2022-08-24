@@ -45,8 +45,10 @@ const subscribe = async () => {
 
     <div class="max-w-120 px-3 mt-4 md:mt-12 w-full mx-auto" v-if="user">
       <div class="flex flex-col">
-        <p>User device is subscribed: {{ isUserSubscribed }}</p>
-        <button class="btn-primary" @click="subscribe">Notify</button>
+        <label class="formkit-label">Subscribe notifcation on current device</label>
+        <button :disabled="isUserSubscribed" class="btn-primary" @click="subscribe">
+          {{ isUserSubscribed ? "Subscribed" : "Notify me" }}
+        </button>
       </div>
     </div>
   </ContentLayout>
