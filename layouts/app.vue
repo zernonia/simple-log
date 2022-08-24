@@ -65,7 +65,7 @@ useCustomHead("App")
   <div class="h-screen w-screen overflow-hidden flex p-2 md:p-4 bg-gray-100">
     <div
       ref="el"
-      :class="[settings.isNavBarShowing ? '-translate-x-1rem' : '-translate-x-[120%]']"
+      :class="[settings.isNavBarShowing ? '-translate-x-0.5rem' : '-translate-x-[120%]']"
       class="bg-gray-100 md:bg-transparent absolute md:static !md:translate-x-0 h-full z-100 transition flex duration-300 ease-in-out"
     >
       <div class="p-2 py-0 md:p-3 md:w-18 flex flex-col justify-between flex-shrink-0">
