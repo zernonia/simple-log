@@ -45,7 +45,7 @@ const isNextDay = (dateLeft: string, dateRight: string) => {
             So quiet here...
           </div>
           <div class="relative" v-for="(event, index) in events" :key="event.id">
-            <div class="sticky top-0 font-bold text-gray-300 mb-2">
+            <div class="font-bold text-gray-300 mb-2">
               <p v-if="index === 0">{{ new Date(event.created_at).toLocaleDateString() }}</p>
               <p v-else-if="isNextDay(event.created_at, events[Math.max(index - 1, 0)].created_at)">
                 {{ new Date(event.created_at).toLocaleDateString() }}

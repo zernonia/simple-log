@@ -62,7 +62,7 @@ useCustomHead("App")
 </script>
 
 <template>
-  <div class="h-screen w-screen overflow-hidden flex p-4 bg-gray-100">
+  <div class="h-screen w-screen overflow-hidden flex p-2 md:p-4 bg-gray-100">
     <div
       ref="el"
       :class="[settings.isNavBarShowing ? '-translate-x-1rem' : '-translate-x-[120%]']"
