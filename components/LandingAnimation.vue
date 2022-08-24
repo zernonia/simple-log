@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { Events } from "~~/utils/interface"
-import LogCard from "./LogCard.vue"
+import { Events } from "~~/utils/interface";
+import LogCard from "./LogCard.vue";
 
-const { counter, pause, resume } = useInterval(3000, { controls: true })
+const { counter, pause, resume } = useInterval(3000, { controls: true });
 const events: Events[] = [
   {
     icon: "⚡️",
@@ -44,61 +44,57 @@ Should have use Supabase`,
 "description": "Want to build a course in Notion with interactive element?"}`,
     created_at: "2022-07-17T22:41:00.027Z",
   },
-]
+];
+
+const buttons: String[] = [
+  "i-logos-github-icon translate-x-8 -translate-y-20",
+  "i-logos-stripe translate-x-40 -translate-y-5",
+  "i-logos-webhooks translate-x-40 translate-y-20",
+  "i-logos-ruby translate-x-8 translate-y-38",
+  "i-logos-nodejs-icon -translate-x-24 translate-y-20",
+  "i-logos-supabase-icon -translate-x-24 -translate-y-5",
+];
 
 watch(counter, () => {
   if (counter.value > 6) {
-    counter.value = 1
+    counter.value = 1;
   }
-})
+});
 </script>
 
 <template>
-  <div class="relative h-80 mt-20 lg:mt-12 flex items-center justify-center w-full transform scale-75 md:scale-100">
+  <div
+    class="relative h-80 mt-26 lg:mt-12 flex items-center justify-center w-full transform scale-75 md:scale-100"
+  >
     <div>
       <button
-        @click="counter = 1"
-        :class="{ ' !saturate-100 !opacity-100 !scale-120 ': counter === 1 }"
-        class="i-logos-github-icon text-5xl absolute filter saturate-0 opacity-30 hover:saturate-100 hover:opacity-100 scale-100 hover:scale-120 transition ease-in-out translate-x-8 -translate-y-20"
-      ></button>
-      <button
-        @click="counter = 2"
-        :class="{ ' !saturate-100 !opacity-100 !scale-120 ': counter === 2 }"
-        class="i-logos-stripe text-5xl absolute filter saturate-0 opacity-30 hover:saturate-100 hover:opacity-100 scale-100 hover:scale-120 transition ease-in-out translate-x-40 -translate-y-5"
-      ></button>
-      <button
-        @click="counter = 3"
-        :class="{ ' !saturate-100 !opacity-100 !scale-120 ': counter === 3 }"
-        class="i-logos-webhooks text-5xl absolute filter saturate-0 opacity-30 hover:saturate-100 hover:opacity-100 scale-100 hover:scale-120 transition ease-in-out translate-x-40 translate-y-20"
-      ></button>
-      <button
-        @click="counter = 4"
-        :class="{ ' !saturate-100 !opacity-100 !scale-120 ': counter === 4 }"
-        class="i-logos-ruby text-5xl absolute filter saturate-0 opacity-20 hover:saturate-100 hover:opacity-100 scale-100 hover:scale-120 transition ease-in-out translate-x-8 translate-y-38"
-      ></button>
-      <button
-        @click="counter = 5"
-        :class="{ ' !saturate-100 !opacity-100 !scale-120 ': counter === 5 }"
-        class="i-logos-nodejs-icon text-5xl absolute filter saturate-0 opacity-30 hover:saturate-100 hover:opacity-100 scale-100 hover:scale-120 transition ease-in-out -translate-x-24 translate-y-20"
-      ></button>
-      <button
-        @click="counter = 6"
-        :class="{ ' !saturate-100 !opacity-100 !scale-120 ': counter === 6 }"
-        class="i-logos-supabase-icon text-5xl absolute filter saturate-0 opacity-30 hover:saturate-100 hover:opacity-100 scale-100 hover:scale-120 transition ease-in-out -translate-x-24 -translate-y-5"
-      ></button>
+        v-for="(button, idx) in buttons"
+        :key="idx"
+        @click="counter = idx + 1"
+        :class="[
+          { '!saturate-100 !opacity-100 !scale-120': counter === idx + 1 },
+          button,
+        ]"
+        class="text-5xl absolute filter saturate-0 opacity-30 hover:saturate-100 hover:opacity-100 scale-100 hover:scale-120 transition ease-in-out"
+      />
       <div class="w-28 h-28 flex items-center justify-center rounded-full">
         <img src="~/assets/logo.svg" alt="SimpleLog" />
 
         <div class="z-10 relative">
           <transition appear name="fade">
             <LogCard
-              class="!w-96 absolute -translate-x-65 -translate-y-80 lg:translate-x-0 lg:-translate-y-40"
               v-if="counter >= 1"
+              class="!w-96 absolute -translate-x-65 -translate-y-80 md:-translate-y-40"
+              :class="[
+                [1, 2, 3].includes(counter)
+                  ? 'md:-translate-x-125'
+                  : 'md:translate-x-0',
+              ]"
               :key="counter"
               :data="events[counter - 1]"
               @mouseenter="pause"
               @mouseleave="resume"
-            ></LogCard>
+            />
           </transition>
         </div>
       </div>
