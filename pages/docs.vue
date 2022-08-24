@@ -12,7 +12,7 @@ const pluginQuery = await queryContent("docs", "plugins").find()
       <div class="w-full" v-for="link in docsQuery">
         <NuxtLink
           :to="link._path"
-          class="px-4 py-2 rounded-lg flex text-base font-semibold bg-white text-gray-800 hover:text-gray-400 transition"
+          class="px-4 py-2 rounded-lg flex text-base font-semibold bg-white text-gray-400 hover:text-gray-800 transition"
         >
           {{ link.title }}
         </NuxtLink>
@@ -21,7 +21,7 @@ const pluginQuery = await queryContent("docs", "plugins").find()
       <h4 class="mt-8 mb-3 uppercase text-sm font-bold text-gray-400">Plugins</h4>
       <div v-for="link in pluginQuery" class="w-full">
         <NuxtLink
-          class="w-full rounded-lg border flex items-center px-4 py-3 font-semibold bg-white hover:bg-gray-100 transition"
+          class="w-full rounded-lg flex items-center px-4 py-3 font-semibold grayscale-100 opacity-50 hover:bg-gray-100 hover:opacity-100 hover:grayscale-0 transition"
           :to="link._path"
         >
           <div :class="link.icon" class="mr-4 text-4xl"></div>
@@ -36,6 +36,6 @@ const pluginQuery = await queryContent("docs", "plugins").find()
 
 <style scoped lang="postcss">
 .router-link-exact-active {
-  @apply text-gray-400 bg-gray-100;
+  @apply text-gray-800 bg-gray-100 opacity-100 grayscale-0;
 }
 </style>

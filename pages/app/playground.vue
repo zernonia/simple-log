@@ -127,6 +127,19 @@ const hlCode = await useShiki(code, { lang: "ts" })
               <CheckPicker v-model="payload.notify"></CheckPicker>
             </div>
           </div>
+
+          <div class="flex mb-2">
+            <p class="text-sm text-gray-400">Not sure how to set up?</p>
+            <p class="text-sm text-gray-400 ml-2">
+              <NuxtLink
+                class="underline underline-offset-2 hover:text-gray-800 transition"
+                target="_blank"
+                to="/docs/getting-started"
+              >
+                Read here</NuxtLink
+              >
+            </p>
+          </div>
         </FormKit>
       </div>
 
