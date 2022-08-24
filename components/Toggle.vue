@@ -22,11 +22,14 @@ onMounted(() => {
     <button class="px-4 py-3 flex justify-between items-center" @click="isToggleOpen = !isToggleOpen">
       <slot name="label"></slot>
 
-      <div class="i-uil-angle-right text-2xl transform transition" :class="{ 'rotate-90': isToggleOpen }"></div>
+      <div
+        class="i-uil-angle-right text-2xl transform transition duration-500"
+        :class="{ 'rotate-90': isToggleOpen }"
+      ></div>
     </button>
 
     <div
-      class="px-4 bg-gray-50 transition-all duration-500 ease-in-out overflow-hidden"
+      class="px-4 bg-gray-100 transition-all duration-500 ease-in-out overflow-hidden"
       :style="[isToggleOpen ? `max-height: ${height}px` : 'max-height: 0px']"
     >
       <div ref="el" class="py-3">
