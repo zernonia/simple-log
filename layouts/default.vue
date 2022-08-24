@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 bg-gray-200">
+  <div class="p-2 md:p-4 bg-gray-200">
     <div class="w-full min-h-[calc(100vh-2rem)] flex p-4 sm:p-5 md:p-6 bg-white rounded-2xl">
       <div class="flex flex-col w-full max-w-screen-xl mx-auto">
         <nav class="flex items-center justify-between">
