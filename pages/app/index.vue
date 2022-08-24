@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Events } from "~~/utils/interface"
+import { isSameDay } from "date-fns"
 
 const { event: ev, events } = useEvents()
 const client = useSupabaseClient()
@@ -12,7 +13,6 @@ const { pending, refresh } = useLazyAsyncData(
       .from<Events>("events")
       .select("id, icon, name, description, created_at, integration, project_id, channel_id", { count: "exact" })
       .order("created_at", { ascending: false })
-      .limit(50)
       //@ts-ignore
       .range(...range.value)
 
@@ -26,6 +26,10 @@ onMounted(() => refresh())
 
 const { range } = usePagination(total, 50, refresh)
 const isListView = useLocalStorage("is-list-view", true)
+
+const isNextDay = (dateLeft: string, dateRight: string) => {
+  return !isSameDay(new Date(dateLeft), new Date(dateRight))
+}
 </script>
 
 <template>
@@ -40,7 +44,14 @@ const isListView = useLocalStorage("is-list-view", true)
           <div class="text-xl text-center font-medium text-gray-400" v-if="!pending && !events.length">
             So quiet here...
           </div>
-          <div class="relative" v-for="event in events" :key="event.id">
+          <div class="relative" v-for="(event, index) in events" :key="event.id">
+            <div class="sticky top-0 font-bold text-gray-300 mb-2">
+              <p v-if="index === 0">{{ new Date(event.created_at).toLocaleDateString() }}</p>
+              <p v-else-if="isNextDay(event.created_at, events[Math.max(index - 1, 0)].created_at)">
+                {{ new Date(event.created_at).toLocaleDateString() }}
+              </p>
+            </div>
+
             <NuxtLink @click="ev = event" :to="`/app/${event.project_id}/${event.channel_id}/${event.id}`">
               <LogCard :mini="isListView" :data="event"></LogCard>
             </NuxtLink>
