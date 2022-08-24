@@ -32,7 +32,6 @@ watch(
 <template>
   <div class="flex flex-col items-center mt-20">
     <h2 class="text-5xl font-extrabold">Login</h2>
-    {{ isLoading }}
 
     <ButtonLoader :loading="isLoading" class="btn-primary mt-8" @click="signIn">
       <div class="i-uil-github mr-2 text-xl"></div>

@@ -1,36 +1,30 @@
 <script setup lang="ts">
 import { Events } from "~~/utils/interface"
 
-const { paginationBus } = useAppSettings()
 const { event: ev, events } = useEvents()
 const client = useSupabaseClient()
-const page = ref(0)
-const maxCount = ref(0)
+
+const total = ref(0)
 const { pending, refresh } = useLazyAsyncData(
-  `logs-${page.value}`,
+  "logs",
   async () => {
     const { data, count } = await client
       .from<Events>("events")
       .select("id, icon, name, description, created_at, integration, project_id, channel_id", { count: "exact" })
       .order("created_at", { ascending: false })
       .limit(50)
-      .range(page.value * 50, (page.value + 1) * 50 - 1)
+      //@ts-ignore
+      .range(...range.value)
 
     events.value = events.value.concat(data)
-    maxCount.value = count
+    total.value = count
     return data
   },
   { server: false }
 )
-
-paginationBus.on((ev: string) => {
-  if (!pending.value && maxCount.value >= page.value * 50) {
-    page.value++
-    refresh()
-  }
-})
 onMounted(() => refresh())
 
+const { range } = usePagination(total, 50, refresh)
 const isListView = useLocalStorage("is-list-view", true)
 </script>
 
